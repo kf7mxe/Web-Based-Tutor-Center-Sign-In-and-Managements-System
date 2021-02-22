@@ -3,7 +3,7 @@ System for keeping record and generating reports for a Tutoring Center Using Fir
 
 ## Allow Students to Sign In 
 
-[sign-in-page-screenshot](/other/sign-in-page-screenshot.jpg)-
+[sign-in-page-screenshot](other/sign-in-page-screenshot.jpg?raw=true)-
 
 ## Manage Courses and Personell
 

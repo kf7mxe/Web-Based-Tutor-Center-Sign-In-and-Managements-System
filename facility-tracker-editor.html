@@ -1,0 +1,168 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous">
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-functions.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="scripts/firebaseInitial.js"></script>
+    <script src="scripts/FacilityTrackerEditor.js" type="module"></script>
+
+</head>
+
+<body>
+    <top-banner></top-banner>
+    <top-nav></top-nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <side-nav currentPage="editor"></side-nav>
+            </div>
+            <div class="col-sm-9">
+                <input class="form-control mb-2 mt-2" id="search" type="text" placeholder="Search">
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">A-Number</th>
+                                <th scope="col">Major</th>
+                                <th scope="col">Rank</th>
+                                <th scope="col">Confidence</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Day Of the Week</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time In</th>
+                                <th scope="col">Time Out</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="inPersonTrackerTable">
+
+                            <tr>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <custom-footer></custom-footer>
+    <confirm-delete-modal id="confirmDeleteComponent" collectionToDelete="inPersonTracker" firebaseid=" "></confirm-delete-modal>
+    <edit-sign-in-entry id="editSignInComponent"></edit-sign-in-entry>
+    <login-modal></login-modal>
+    <create-account-modal></create-account-modal>
+    <add-admin></add-admin>
+
+    <script>
+//         let index =10;
+//         let amountToLoad = 10;
+//         let loginItems = []
+//         let currentLoginItems = []
+//         db.collection("inPersonTracker").onSnapshot(function (querySnapshot) {
+//             let list = "";
+//             querySnapshot.forEach(function (doc) {
+//                 loginItems.push(doc)
+//                 currentLoginItems.push(doc)
+//             })
+//             renderRows()
+//         });
+
+
+//         document.getElementById('inPersonTrackerTable').addEventListener("click", function (e) {
+//             let id = e.path[2].id
+//             // e.target is the clicked element!
+//             // If it was a list item
+
+//             if (e.target && e.target.nodeName == "BUTTON" && e.target.innerHTML == "Delete") {
+//                 let id = e.path[2].id
+//                 document.querySelector('#confirmDeleteComponent').setAttribute("firebaseid", id)
+//                 $('#confirmDeleteModal').modal('show')
+//             }
+//             if (e.target && e.target.nodeName == "BUTTON" && e.target.innerHTML == "Edit") {
+//                 let id = e.path[2].id
+//                 document.querySelector('#editSignInComponent').setAttribute("firebaseid", id)
+//                 $('#editSignInEntryModal').modal('show')
+//             }
+//         });
+
+
+//     function renderRows(){
+//         let list = "";
+//         for(let i=0;i<amountToLoad;i++){
+//             createRow(currentLoginItems[i]);
+//         }
+//     } 
+//     async function lazyLoad(){
+//         let scrollTop = window.pageYOffset
+//          let scrollIsAtTheBottom = (document.documentElement.scrollHeight - window.innerHeight) === window.scrollY;
+//          let bottom = document.documentElement.scrollHeight >= window.innerHeight -20
+//          let difference = (document.documentElement.scrollHeight - window.innerHeight)-window.scrollY
+//          if(difference<1){scrollIsAtTheBottom = true}
+//          //const scrollIsAtTheBottom = (( document.documentElement.scrollHeight-window.pageYOffset)+window.pageYOffset) !==document.documentElement.scrollHeight;
+//         //const scrollIsAtTheBottom =(window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
+//         if(bottom){
+//             for(var j=index;j<index+amountToLoad;j++){
+//                 if(currentLoginItems.length >j){
+//             createRow(currentLoginItems[j])
+//             }
+//         }
+//         index = index +amountToLoad
+//     }
+// }
+//     window.addEventListener('scroll',lazyLoad);
+
+//     function createRow(doc){
+//         if(doc!=undefined){
+//         let data = doc.data();
+//         let listItem = ` <tr id=${doc.id}>
+//                         <td>${data.aNumber}</td>
+//                         <td>${data.major}</td>
+//                         <td>${data.classRank}</td>
+//                         <td>${data.confidence}</td>
+//                         <td>${data.course}</td>
+//                         <td>${data.dayOfWeek}</td>
+//                         <td>${data.date}</td>
+//                         <td>${data.timeIn}</td>
+//                         <td>${data.timeOut}</td>
+//                         <td><button class="btn btn-primary">Edit</button></td>
+//                         <td><button class="btn btn-danger">Delete</button></td>
+//                         </tr>`
+//                         document.getElementById('inPersonTrackerTable').innerHTML += listItem;
+//                     }
+//     }
+
+    </script>
+    <script src="scripts/topBannerNavFooterComponents.js"></script>
+    <script src="scripts/components.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="scripts/auth.js"></script>
+
+</body>
+
+</html>

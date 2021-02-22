@@ -1,0 +1,2510 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous">
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-functions.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="scripts/firebaseInitial.js"></script>
+    <script src="scripts/Report.js" type="module"></script>
+
+
+</head>
+
+<body>
+    <top-banner></top-banner>
+    <top-nav></top-nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <side-nav currentPage="reports"></side-nav>
+            </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-12">
+                        <button id="" class="btn btn-primary btn-block mt-2 mb-2" data-toggle="modal"
+                            data-target='#generateDownloadPDFReportModal'>Generate and Download PDF
+                            Reports</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="tab-content col-sm-9" id="myTabContent">
+                        <div class="tab-pane fade show active" id="nav-hourly-analysis" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select
+                                            Date Range</label>
+                                        <select class="custom-select" name="date" id="hourlyAnalysisDateRange" multiple>
+                                            <option selected value="test"></option>
+                                            <option selected value="test"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Hour</label>
+                                        <select class="custom-select" name="date" id="hourlyAnalysisHourSelect"
+                                            multiple>
+                                            <option selected value="8:00 AM">8:00 AM</option>
+                                            <option selected value="8:30 AM">8:30 AM</option>
+                                            <option selected value="9:00 AM">9:00 AM</option>
+                                            <option selected value="9:30 AM">9:30 AM</option>
+                                            <option selected value="10:00 AM">10:00 AM</option>
+                                            <option selected value="10:30 AM">10:30 AM</option>
+                                            <option selected value="11:00 AM">11:00 AM</option>
+                                            <option selected value="11:30 AM">11:30 AM</option>
+                                            <option selected value="12:00 PM">12:00 PM</option>
+                                            <option selected value="12:30 PM">12:30 PM</option>
+                                            <option selected value="1:00 PM">1:00 PM</option>
+                                            <option selected value="1:30 PM">1:30 PM</option>
+                                            <option selected value="2:00 PM">2:00 PM</option>
+                                            <option selected value="2:30 PM">2:30 PM</option>
+                                            <option selected value="3:00 PM">3:00 PM</option>
+                                            <option selected value="3:30 PM">3:30 PM</option>
+                                            <option selected value="4:00 PM">4:00 PM</option>
+                                            <option selected value="4:30 PM">4:30 PM</option>
+                                            <option selected value="5:00 PM">5:00 PM</option>
+                                            <option selected value="5:30 PM">5:30 PM</option>
+                                            <option selected value="6:00 PM">6:00 PM</option>
+                                            <option selected value="6:30 PM">6:30 PM</option>
+                                            <option selected value="7:00 PM">7:00 PM</option>
+                                            <option selected value="7:30 PM">7:30 PM</option>
+                                            <option selected value="8:00 PM">8:00 PM</option>
+                                            <option selected value="8:30 PM">8:30 PM</option>
+                                            <option selected value="9:00 PM">9:00 PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Day of
+                                            the Week</label>
+                                        <select class="custom-select" name="date" id="hourlyAnalysisDayOfTheWeekSelect"
+                                            multiple>
+                                            <option selected value="Monday">Monday</option>
+                                            <option selected value="Tuesday">Tuesday</option>
+                                            <option selected value="Wednesday">Wednesday</option>
+                                            <option selected value="Thursday">Thursday</option>
+                                            <option selected value="Friday">Friday</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+<!--                             
+                            <div class="row">
+                                <p>Test <span
+                                    class="material-icons float-right">chevron_right</span></p>
+                            </div> -->
+                            <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col">
+                                <button type="button" class="btn btn-link float-right" role="button" href="#basicCollapse" data-toggle="collapse" data-target="#basicCollapse" class="collapsed" aria-expanded="false">More Filters <span class="material-icons float-right"  id="showMoreFilters1">expand_more</span></button>
+                            </div>
+                        </div>
+                                <div id="basicCollapse" class="collapse" >
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <canvas id="hourlyAnalysisChart" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-daily-analysis" role="tabpanel" aria-labelledby="daily-analysis-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select
+                                            Date Range</label>
+                                        <select class="custom-select" name="date" id="dailyAnalysisDateRange" multiple>
+                                            <option selected value="test"></option>
+                                            <option selected value="test"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Hour</label>
+                                        <select class="custom-select" name="date" id="dailyAnalysisHourSelect" multiple>
+                                            <option selected value="8:00 AM">8:00 AM</option>
+                                            <option selected value="8:30 AM">8:30 AM</option>
+                                            <option selected value="9:00 AM">9:00 AM</option>
+                                            <option selected value="9:30 AM">9:30 AM</option>
+                                            <option selected value="10:00 AM">10:00 AM</option>
+                                            <option selected value="10:30 AM">10:30 AM</option>
+                                            <option selected value="11:00 AM">11:00 AM</option>
+                                            <option selected value="11:30 AM">11:30 AM</option>
+                                            <option selected value="12:00 PM">12:00 PM</option>
+                                            <option selected value="12:30 PM">12:30 PM</option>
+                                            <option selected value="1:00 PM">1:00 PM</option>
+                                            <option selected value="1:30 PM">1:30 PM</option>
+                                            <option selected value="2:00 PM">2:00 PM</option>
+                                            <option selected value="2:30 PM">2:30 PM</option>
+                                            <option selected value="3:00 PM">3:00 PM</option>
+                                            <option selected value="3:30 PM">3:30 PM</option>
+                                            <option selected value="4:00 PM">4:00 PM</option>
+                                            <option selected value="4:30 PM">4:30 PM</option>
+                                            <option selected value="5:00 PM">5:00 PM</option>
+                                            <option selected value="5:30 PM">5:30 PM</option>
+                                            <option selected value="6:00 PM">6:00 PM</option>
+                                            <option selected value="6:30 PM">6:30 PM</option>
+                                            <option selected value="7:00 PM">7:00 PM</option>
+                                            <option selected value="7:30 PM">7:30 PM</option>
+                                            <option selected value="8:00 PM">8:00 PM</option>
+                                            <option selected value="8:30 PM">8:30 PM</option>
+                                            <option selected value="9:00 PM">9:00 PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Major</label>
+                                        <select class="custom-select" name="date" id="dailyAnalysisMajorSelect"
+                                            multiple>
+                                            <option selected value="Mechanical/Aerospace">Mechanical/Aerospace</option>
+                                            <option selected value="Biological">Biological</option>
+                                            <option selected value="Electrical">Electrical</option>
+                                            <option selected value="Computer">Computer</option>
+                                            <option selected value="Environmental">Environmental</option>
+                                            <option selected value="Civil">Civil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <canvas id="dailyAnalysisChart" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-usage" role="tabpanel" aria-labelledby="nav-usage-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select
+                                            Date Range</label>
+                                        <select class="custom-select" name="date" id="usageDateSelect" multiple>
+                                            <option selected value="test"></option>
+                                            <option selected value="test"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <canvas id="usageChart" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-top-courses" role="tabpanel"
+                            aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select
+                                            Date Range</label>
+                                        <select class="custom-select" name="date" id="topCoursesDateSelect" multiple>
+                                            <option selected value="test"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Course
+                                            Name</label>
+                                        <select class="custom-select" name="date" id="topCoursesCourseSelect" multiple>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Major</label>
+                                        <select class="custom-select" name="date" id="topCoursesMajorSelect" multiple>
+                                            <option selected value="Mechanical/Aerospace">Mechanical/Aerospace</option>
+                                            <option selected value="Biological">Biological</option>
+                                            <option selected value="Electrical">Electrical</option>
+                                            <option selected value="Computer">Computer</option>
+                                            <option selected value="Environmental">Environmental</option>
+                                            <option selected value="Civil">Civil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <canvas id="topCourses" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-usage-by-id" role="tabpanel"
+                            aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">A-Number
+                                            Name</label>
+                                        <select class="custom-select" name="date" id="aNumber" multiple>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <canvas id="usageById" width="100" height="100"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-session-length-id" role="tabpanel"
+                            aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select
+                                            Date Range</label>
+                                        <select class="custom-select" name="date" id="sessionLengthDateRange" multiple>
+                                            <option selected value="test"></option>
+                                            <option selected value="test"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Major</label>
+                                        <select class="custom-select" name="date" id="sessionLengthMajor" multiple>
+                                            <option selected value="Mechanical/Aerospace">Mechanical/Aerospace                                            </option>
+                                            <option selected value="Biological">Biological</option>
+                                            <option selected value="Electrical">Electrical</option>
+                                            <option selected value="Computer">Computer</option>
+                                            <option selected value="Environmental">Environmental</option>
+                                            <option selected value="Civil">Civil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Rank</label>
+                                        <select class="custom-select" name="date" id="sessionLengthRank" multiple>
+                                            <option selected value="">Select Class Rank</option>
+                                            <option selected value="Freshman">Freshman</option>
+                                            <option selected value="Sophomore">Sophomore</option>
+                                            <option selected value="Junior">Junior</option>
+                                            <option selected value="Senior">Senior</option>
+                                            <option selected value="Graduate">Graduate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <canvas id="sessionLengthId" width="100" height="100"></canvas>
+                        </div>
+                        <div class="tab-pane fade" id="nav-confidence-level-id" role="tabpanel"
+                            aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Confidence</label>
+                                        <select class="custom-select" name="date" id="confidenceSelectConfidence"
+                                            multiple>
+                                            <option selected value="1">1 Not confidence at all</option>
+                                            <option selected value="2">2 Somewhat unconfident</option>
+                                            <option selected value="3">3 Neutral</option>
+                                            <option selected value="4">4 Somewhat confident</option>
+                                            <option selected value="5">5 Very Confident</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Rank</label>
+                                        <select class="custom-select" name="date" id="confidenceSelectRank" multiple>
+                                            <option selected value="Freshman">Freshman</option>
+                                            <option selected value="Sophomore">Sophomore</option>
+                                            <option selected value="Junior">Junior</option>
+                                            <option selected value="Senior">Senior</option>
+                                            <option selected value="Graduate">Graduate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <canvas id="confidenceLevel" width="100" height="100"></canvas>
+                        </div>
+                        <div class="tab-pane fade" id="nav-purpuse-visit-id" role="tabpanel"
+                            aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Purpose
+                                            of Visit</label>
+                                        <select class="custom-select" name="date" id="purposeOfVisitSelect" multiple>
+                                            <option selected value="Homework Help">Homework Help</option>
+                                            <option selected value="Exam Preparation">Exam Preparation</option>
+                                            <option selected value="Group Study Session">Group Study Session</option>
+                                            <option selected value="Presentation Practice">Presentation Practice
+                                            </option>
+                                            <option selected value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label font-weight-bold"
+                                            for="coursePrefixSelect">Rank</label>
+                                        <select class="custom-select" name="date" id="purposeOfVisitRankSelect"
+                                            multiple>
+                                            <option selected value="Freshman">Freshman</option>
+                                            <option selected value="Sophomore">Sophomore</option>
+                                            <option selected value="Junior">Junior</option>
+                                            <option selected value="Senior">Senior</option>
+                                            <option selected value="Graduate">Graduate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <canvas id="purposeOfVisit" width="100" height="100"></canvas>
+                        </div>
+
+                        <div class="d-none d-flex justify-content-center " id="generatingGraphLoadingSpinner">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <p> <strong>Loading Graph, Crunching numbers</strong></p>
+                        </div>
+                    </div>
+                    <div class="nav flex-column nav-pills col-sm-3" id="nav-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <a class="nav-item nav-link active" id="nav-hourly-analysis-link" data-toggle="tab"
+                            href="#nav-hourly-analysis" role="tab" aria-controls="nav-hourly-analysis"
+                            aria-selected="true">Hourly Analysis</a>
+                        <a class="nav-item nav-link" id="nav-daily-analysis-link" data-toggle="tab" href="#nav-daily-analysis"
+                            role="tab" aria-controls="nav-daily-analysis" aria-selected="false">Daily Analysis</a>
+                        <a class="nav-item nav-link" id="nav-usage-link" data-toggle="tab" href="#nav-usage"
+                            role="tab" aria-controls="nav-contact" aria-selected="false">Usage</a>
+                        <a class="nav-item nav-link" id="nav-top-courses-link" data-toggle="tab" href="#nav-top-courses"
+                            role="tab" aria-controls="nav-contact" aria-selected="false">Top Courses</a>
+                        <a class="nav-item nav-link" id="nav-usage-by-id-link" data-toggle="tab" href="#nav-usage-by-id"
+                            role="tab" aria-controls="nav-contact" aria-selected="false">Usage by ID</a>
+                        <a class="nav-item nav-link" id="nav-session-length-link" data-toggle="tab"
+                            href="#nav-session-length-id" role="tab" aria-controls="nav-contact"
+                            aria-selected="false">Session Length</a>
+                        <a class="nav-item nav-link" id="nav-confidence-level-link" data-toggle="tab"
+                            href="#nav-confidence-level-id" role="tab" aria-controls="nav-contact"
+                            aria-selected="false">Confidence Level</a>
+                        <a class="nav-item nav-link" id="nav-purpose-of-visit-link" data-toggle="tab" href="#nav-purpuse-visit-id"
+                            role="tab" aria-controls="nav-contact" aria-selected="false">Purpose of Visit</a>
+                            <p class="h5 mt-5">Download All Raw Unfiltered Data</p>
+                            <button id="download-as-csv" class="btn btn-primary btn-block mt-2 pull-right" >Donwload CSV</button>
+                            <button id="download-as-json" class="btn btn-primary btn-block mt-2 mb-2 pull-right" >Donwload Json</button>
+
+                        </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-none" id="pdfGenerateReportCanvasContainer">
+
+            <canvas id="pdfReportHourlyAnalysisChart" width="100" height="100"></canvas>
+            <canvas id="pdfReportDailyAnalysisChart" width="100" height="100"></canvas>
+            <canvas id="pdfReportUsageChart" width="100" height="100"></canvas>
+            <canvas id="pdfReportTopCourses" width="100" height="100"></canvas>
+            <canvas id="pdfReportUsageById" width="100" height="100"></canvas>
+            <canvas id="pdfReportSessionLengthId" width="100" height="100"></canvas>
+            <canvas id="pdfReportConfidenceLevel" width="100" height="100"></canvas>
+            <canvas id="pdfReportPurposeOfVisit" width="100" height="100"></canvas>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="generateDownloadPDFReportModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Generate PDF Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select Graphs to
+                                    include</label>
+                                <select class="custom-select" name="" id="selectGraphsToInclude" multiple>
+                                    <option selected value="Hourly Analysis">Hourly Analysis</option>
+                                    <option selected value="Daily Analysis">Daily Analysis</option>
+                                    <option selected value="Usage">Usage</option>
+                                    <option selected value="Top Courses">Top Courses</option>
+                                    <option selected value="Usage By Id">Usage By Id</option>
+                                    <option selected value="Session Length">Session Length</option>
+                                    <option selected value="Confidence Level">Confidence Level</option>
+                                    <option selected value="Purpose of Visit">Purpose of Visit</option>
+                                </select>
+                                <button id="graph-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Course
+                                    Prefix</label>
+                                <select id="coursePrefixSelectGeneratePDFModal" class="custom-select" multiple>
+                                    <option value="" selected>Select Course Prefix</option>
+                                </select>
+                                <button id="course-prefix-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+
+                            </div>
+
+                            <div id="" class="form-group">
+                                <label class="col-form-label font-weight-bold" for="selectCourse">Course</label>
+                                <select id="selectCourseGeneratePDFReportSelect" class="custom-select" multiple>
+                                    <option value="" selected>Select Course</option>
+                                </select>
+                                <button id="course-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2 center">Deselect All</button>
+
+                                <input type="text" class="form-control mt-2 d-none" id="selectCourseOtherTextInput"
+                                    aria-describedby="" placeholder="MAE 0000: Description"
+                                    pattern="[A-Z]{3} [0-9]{4}:[a-z]+" required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Student
+                                    Major</label>
+                                <select class="custom-select" name="" id="selectMajorGeneratePDFReport" multiple>
+                                    <option selected value="Biological">Biological</option>
+                                    <option selected value="Civil">Civil</option>
+                                    <option selected value="Computer">Computer</option>
+                                    <option selected value="Electrical">Electrical</option>
+                                    <option selected value="Environmental">Environmental</option>
+                                    <option selected value="Mechanical/Aerospace">Mechanical/Aerospace</option> <!-- TODO update on OU campus-->
+                                </select>
+                                <button id="student-major-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold"
+                                    for="coursePrefixSelect">Department</label>
+                                <select class="custom-select" name="" id="selectDepartmentGeneratePDFReport" multiple>
+                                    <option selected value="BE">BE</option>
+                                    <option selected value="ECE">ECE</option>
+                                    <option selected value="CEE">CEE</option>
+                                    <option selected value="MAE">MAE</option>
+                                </select>
+                                <button id="department-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold"
+                                    for="coursePrefixSelect">Hours</label>
+                                <select class="custom-select" name="date" id="selectHourGeneratePDFReport" multiple>
+                                    <option selected value="8:00 AM">8:00 AM</option>
+                                    <option selected value="8:30 AM">8:30 AM</option>
+                                    <option selected value="9:00 AM">9:00 AM</option>
+                                    <option selected value="9:30 AM">9:30 AM</option>
+                                    <option selected value="10:00 AM">10:00 AM</option>
+                                    <option selected value="10:30 AM">10:30 AM</option>
+                                    <option selected value="11:00 AM">11:00 AM</option>
+                                    <option selected value="11:30 AM">11:30 AM</option>
+                                    <option selected value="12:00 PM">12:00 PM</option>
+                                    <option selected value="12:30 PM">12:30 PM</option>
+                                    <option selected value="1:00 PM">1:00 PM</option>
+                                    <option selected value="1:30 PM">1:30 PM</option>
+                                    <option selected value="2:00 PM">2:00 PM</option>
+                                    <option selected value="2:30 PM">2:30 PM</option>
+                                    <option selected value="3:00 PM">3:00 PM</option>
+                                    <option selected value="3:30 PM">3:30 PM</option>
+                                    <option selected value="4:00 PM">4:00 PM</option>
+                                    <option selected value="4:30 PM">4:30 PM</option>
+                                    <option selected value="5:00 PM">5:00 PM</option>
+                                    <option selected value="5:30 PM">5:30 PM</option>
+                                    <option selected value="6:00 PM">6:00 PM</option>
+                                    <option selected value="6:30 PM">6:30 PM</option>
+                                    <option selected value="7:00 PM">7:00 PM</option>
+                                    <option selected value="7:30 PM">7:30 PM</option>
+                                    <option selected value="8:00 PM">8:00 PM</option>
+                                    <option selected value="8:30 PM">8:30 PM</option>
+                                    <option selected value="9:00 PM">9:00 PM</option>
+                                </select>
+                                <button id="hour-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+
+                            <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Day of
+                                the Week</label>
+                            <select class="custom-select" name="date" id="selectWeekGeneratePDFReport"
+                                multiple>
+                                <option selected value="Monday">Monday</option>
+                                <option selected value="Tuesday">Tuesday</option>
+                                <option selected value="Wednesday">Wednesday</option>
+                                <option selected value="Thursday">Thursday</option>
+                                <option selected value="Friday">Friday</option>
+                            </select>
+                            <button id="week-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+                        </div>
+
+
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Service</label>
+                                <select class="custom-select" name="" id="selectServiceGeneratePDFReport" multiple>
+                                    <option selected value="Exam Preparation">Exam Preparation</option>
+                                    <option selected value="Group Study Session">Group Study Session</option>
+                                    <option selected value="Homework Help">Homework Help</option>
+                                    <option selected value="Other">Other</option>
+                                </select>
+                                <button id="service-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2">Deselect All</button>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold"
+                                    for="coursePrefixSelect">Confidence</label>
+                                <select class="custom-select" name="" id="selectConfidencePDFReport" multiple>
+                                    <option selected value="1">Not confidenct at all</option>
+                                    <option selected value="2">Somewhat unconfident</option>
+                                    <option selected value="3">Nuetral</option>
+                                    <option selected value="4">Somewhat Confident</option>
+                                    <option selected value="5">Very Confident</option>
+                                </select>
+                                <button id="confidence-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2 center">Deselect All</button>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">A-Number</label>
+                                <select class="custom-select" name="" id="ANumberSelectGeneratePDFModal" multiple>
+                                    <option value="">Please select option</option>
+                                </select>
+                                <button id="aNumber-select-deselect-all" type="button" class="btn btn-primary btn-sm mt-2 center">Deselect All</button>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select date
+                                    range</label>
+                                <select class="custom-select" name="" id="selectDataToGenerateFromSelect">
+                                    <option value="">Please select option</option>
+                                    <option value="All Date Range">All Date Range</option>
+                                    <option value="Filter Dates">Filter Dates</option>
+                                </select>
+
+                            </div>
+                            <div class="d-none" id="generatePDFReportFilterDateSelectContainer">
+                                <div class="form-group">
+                                    <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Select
+                                        Symester</label>
+                                    <select class="custom-select" name="date" id="selectSymesterSelect">
+                                        <option value="">Select Symester</option>
+                                        <option value="2020-08-31,2020-12-18">Fall 2020, August 31 - December 18</option>
+                                        <option value="2021-01-11,2021-05-07">Spring 2021, January 11 - May 7</option>
+                                        <option value="2021-05-10,2021-8-13">Summer 2021, May 10 - August 13</option>
+                                        <option value="2021-08-30,2021-12-10">Fall 2021, August 30 - December 17
+                                        </option>
+                                        <option value="2022-01-10,2022-05-06">Spring 2022, January 10 - May 6</option>
+                                    </select>
+                                    <button type="button" class="btn btn-primary btn-sm mt-2 center">Deselect All</button>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label font-weight-bold"
+                                        for="exampleInputPassword1">From</label>
+                                    <input type="date" id="generatePDFReportFromDateInput">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label font-weight-bold"
+                                        for="exampleInputPassword1">To</label>
+                                    <input type="date" id="generatePDFReportToDateInput">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-weight-bold" for="exampleInputPassword1">Report
+                                    Title</label>
+                                <input class="form-control mb-2" type="text" placeholder="Report Title"
+                                    id="reportTitleTextInput">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-none" id="progressContainer">
+                        <div class="col-sm-12">
+                            <div class="progress">
+                                <div id="generatePDFProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                              </div>
+                        </div>
+                        <div class="col-sm-12">
+                        <div class="d-none d-flex justify-content-center " id="generatingGraphLoadingSpinner">
+                            <!-- <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div> -->
+                            <p> <strong>Genrating PDF, Crunching numbers. This may take a few minutes depending on size of dataset.</strong></p>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="row d-none" id="pdfSuccessContainer">
+                        <div class="col-sm-12">
+                        <div class="alert alert-success" role="alert">
+                            Your PDF report has been generated!
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row d-none" id="pdfErrorContainer">
+                        <div class="col-sm-12">
+                        <div class="alert alert-danger " role="alert">
+                            There was an error generating your PDF report!
+                          </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="generatePDFButton" class="btn btn-primary">Generate PDF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <custom-footer></custom-footer>
+    <login-modal></login-modal>
+    <create-account-modal></create-account-modal>
+    <script src="scripts/topBannerNavFooterComponents.js"></script>
+    <script src="scripts/components.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+
+<style>
+    .chevron-rotate {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);	 /*  for IE  */
+
+    /* 	for browsers supporting webkit (such as chrome, firefox, safari etc.). */
+    -webkit-transform: rotate(1zq80deg);
+    display: inline-block;
+}
+</style>
+    <script>
+       "use strict";
+
+       document.querySelector('#showMoreFilters1').addEventListener('click', function(){
+        document.querySelector('#showMoreFilters1').classList.add('chevron-rotate')
+       })
+/***
+ * Tutor Center Application
+ * 
+ *
+ * 
+ *
+ * Author: Trax Bagley
+ * Author Email: trax.bagley@gmail.com
+ * Author website: 
+ ***/
+
+//  function generateHourlyAnalysisData(currentData, enteredLabels) {
+//             let mondayTimeAmountArray = [];
+//             let tuesdayTimeAmountArray = [];
+//             let wednesdayTimeAmountArray = [];
+//             let thursdayTimeAmountArray = [];
+//             let fridayTimeAmountArray = [];
+//             for (let i = 0; i < enteredLabels.length; i++) {
+//                 mondayTimeAmountArray.push(0)
+//                 tuesdayTimeAmountArray.push(0)
+//                 wednesdayTimeAmountArray.push(0)
+//                 thursdayTimeAmountArray.push(0)
+//                 fridayTimeAmountArray.push(0)
+//             }
+
+//             for (let i = 0; i < currentData.length; i++) {
+//                 if (currentData[i].dayOfWeek === "Monday") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         mondayTimeAmountArray[hours] = mondayTimeAmountArray[hours] + currentData[i].hoursInTutorCenter[
+//                             hours]
+//                     }
+//                 }
+//                 if (currentData[i].dayOfWeek === "Tuesday") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         tuesdayTimeAmountArray[hours] = tuesdayTimeAmountArray[hours] + currentData[i]
+//                             .hoursInTutorCenter[hours]
+//                     }
+//                 }
+//                 if (currentData[i].dayOfWeek === "Wednesday") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         wednesdayTimeAmountArray[hours] = wednesdayTimeAmountArray[hours] + currentData[i]
+//                             .hoursInTutorCenter[hours]
+//                     }
+//                 }
+//                 if (currentData[i].dayOfWeek === "Thursday") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         thursdayTimeAmountArray[hours] = thursdayTimeAmountArray[hours] + currentData[i]
+//                             .hoursInTutorCenter[hours]
+//                     }
+//                 }
+//                 if (currentData[i].dayOfWeek === "Friday") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         fridayTimeAmountArray[hours] = fridayTimeAmountArray[hours] + currentData[i].hoursInTutorCenter[
+//                             hours]
+//                     }
+//                 }
+//             }
+//             let data = {
+//                 labels: enteredLabels,
+//                 datasets: [{
+//                         label: 'Monday',
+//                         backgroundColor: 'rgba(255, 0, 0, 0.2)',
+//                         data: mondayTimeAmountArray
+//                     },
+//                     {
+//                         label: 'Tuesday',
+//                         backgroundColor: 'rgba(0, 255, 0, 0.2)',
+//                         data: tuesdayTimeAmountArray
+//                     },
+//                     {
+//                         label: 'Wednesday',
+//                         backgroundColor: 'rgba(0, 0, 255, 0.2)',
+//                         data: wednesdayTimeAmountArray
+//                     },
+//                     {
+//                         label: 'Thursday',
+//                         backgroundColor: 'rgba(100, 0, 0, 0.2)',
+//                         data: thursdayTimeAmountArray
+//                     },
+//                     {
+//                         label: 'Friday',
+//                         backgroundColor: 'rgba(100, 100, 20, 0.2)',
+//                         data: fridayTimeAmountArray
+//                     }
+//                 ]
+//             }
+//             return data
+//         }
+
+//   function generateOptions(graph) {
+//             let options = {}
+//             let text = ''
+//             let yLableString = ''
+//             if (graph == 'hourlyAnalysisChart') {
+//                 text = 'Student Count per Hour by Day'
+//             }
+//             if (graph == 'dailyAnalysisChart') {
+//                 text = 'Student Count per Hour by Major'
+//             }
+//             if (graph == 'topCourses') {
+//                 text = 'Top Courses by Major'
+//             }
+//             if (graph == 'usageById') {
+//                 text = 'Most Frequent Patrons'
+//             }
+//             if (graph == 'sessionLength') {
+//                 text = 'Average Session Time per Major by Rank'
+//                 yLableString = 'Minutes'
+//             }
+//             if (graph == 'confidenceLevel') {
+//                 text = 'Level of Confidence with Course Material'
+//             }
+//             if (graph == 'purposeOfVisit') {
+//                 text = 'Purpose of Student Visits to Tutor Center'
+//             }
+//             if (graph == 'hourlyAnalysisChart' || graph == 'dailyAnalysisChart' || graph == 'sessionLength' || graph ==
+//                 'confidenceLevel' || graph == 'purposeOfVisit' || graph == 'topCourses' || graph == 'usageById') {
+//                 options = {
+//                     title: {
+//                         display: true,
+//                         text: graph = text
+//                     },
+//                     tooltips: {
+//                         mode: 'index',
+//                         intersect: false
+//                     },
+//                     responsive: true,
+//                     scales: {
+//                         xAxes: [{
+//                             stacked: true,
+//                         }],
+//                         yAxes: [{
+//                             stacked: true,
+//                             scaleLabel: {
+// 								display: true,
+// 								labelString: yLableString
+// 							}
+//                         }]
+//                     },
+//                     animation:{
+//                         duration:0
+//                     },
+//                     tooltips:{
+//                         enabled:false
+//                     }
+//                 }
+//             }
+
+//             if (graph == 'usageChart') {
+//                 options = {
+//                     plugins: {
+//                         filler: {
+//                             propagate: false
+//                         }
+//                     },
+//                     spanGaps: false,
+//                     elements: {
+//                         line: {
+//                             tension: 0.000001
+//                         },
+//                     },
+//                     scales: {
+//                         yAxes: [{
+//                             stacked: true
+//                         }]
+//                     },
+//                     animation:{
+//                         duration:0
+//                     },
+//                     tooltips:{
+//                         enabled:false
+//                     }
+//                 }
+//             }
+//             return options
+//         }
+
+//  function generateDailyAnalysisData(currentData, enteredLabels) {
+//             let electricalAmountArray = [];
+//             let computerAmountArray = [];
+//             let environmentalAmountArray = [];
+//             let civilAmountArray = [];
+//             let mechanicalAmountArray = [];
+//             let biologicalAmountArray = [];
+//             for (let i = 0; i < enteredLabels.length; i++) {
+//                 electricalAmountArray.push(0)
+//                 computerAmountArray.push(0)
+//                 environmentalAmountArray.push(0)
+//                 civilAmountArray.push(0)
+//                 mechanicalAmountArray.push(0)
+//                 biologicalAmountArray.push(0)
+//             }
+
+//             for (let i = 0; i < currentData.length; i++) {
+//                 if (currentData[i].major === "Electrical") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         electricalAmountArray[hours] = electricalAmountArray[hours] + currentData[i].hoursInTutorCenter[
+//                             hours]
+//                     }
+//                 }
+//                 if (currentData[i].major === "Computer") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         computerAmountArray[hours] = computerAmountArray[hours] + currentData[i].hoursInTutorCenter[
+//                             hours]
+//                     }
+//                 }
+//                 if (currentData[i].major === "Environmental") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         environmentalAmountArray[hours] = environmentalAmountArray[hours] + currentData[i]
+//                             .hoursInTutorCenter[hours]
+//                     }
+//                 }
+//                 if (currentData[i].major === "Civil") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         civilAmountArray[hours] = civilAmountArray[hours] + currentData[i].hoursInTutorCenter[hours]
+//                     }
+//                 }
+//                 if (currentData[i].major === "Mechanical/Aerospace") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         mechanicalAmountArray[hours] = mechanicalAmountArray[hours] + currentData[i].hoursInTutorCenter[
+//                             hours]
+//                     }
+//                 }
+//                 if (currentData[i].major === "Biological") {
+//                     for (let hours = 0; hours < currentData[i].hoursInTutorCenter.length; hours++) {
+//                         biologicalAmountArray[hours] = biologicalAmountArray[hours] + currentData[i].hoursInTutorCenter[
+//                             hours]
+//                     }
+//                 }
+//             }
+//             let data = {
+//                 labels: enteredLabels,
+//                 datasets: [{
+//                         label: 'Electrical',
+//                         backgroundColor: 'rgba(255, 0, 0, 0.2)',
+//                         data: electricalAmountArray
+//                     },
+//                     {
+//                         label: 'Computer',
+//                         backgroundColor: 'rgba(0, 255, 0, 0.2)',
+//                         data: computerAmountArray
+//                     },
+//                     {
+//                         label: 'Environmental',
+//                         backgroundColor: 'rgba(0, 0, 255, 0.2)',
+//                         data: environmentalAmountArray
+//                     },
+//                     {
+//                         label: 'Civil',
+//                         backgroundColor: 'rgba(100, 0, 0, 0.2)',
+//                         data: civilAmountArray
+//                     },
+//                     {
+//                         label: 'Mechanical',
+//                         backgroundColor: 'rgba(100, 100, 20, 0.2)',
+//                         data: mechanicalAmountArray
+//                     },
+//                     {
+//                         label: 'Biological',
+//                         backgroundColor: 'rgba(100, 50, 20, 0.2)',
+//                         data: biologicalAmountArray
+//                     }
+//                 ]
+//             }
+//             return data;
+//         }
+
+//  function generateUsageData(currentData, datesArray) {
+//             let patronsOnDate = []
+//             for (let i = 0; i < datesArray.length; i++) {
+//                 patronsOnDate.push(0)
+//             }
+//             for (let i = 0; i < currentData.length; i++) {
+//                 currentData[i].Date
+//                 if (datesArray.includes(currentData[i].date)) {
+//                     patronsOnDate[datesArray.indexOf(currentData[i].date)] = patronsOnDate[datesArray.indexOf(
+//                         currentData[i].date)] + 1;
+//                 }
+//             }
+//             let data = {
+//                 labels: datesArray,
+//                 datasets: [{
+//                     fill: false,
+//                     data: patronsOnDate,
+//                     label: 'Patrons By Day',
+//                     hidden: false,
+//                     borderColor: 'rgba(10, 20, 255, 0.9)',
+//                     backgroundColor: 'rgba(10, 20, 255, 0.9)'
+//                 }]
+//             }
+//             return data;
+//         }
+
+//  function generateTopCoursesData(currentData) {
+//             let coursesLabels = [];
+//             let biologicalNumberCourses = []
+//             let computerNumberCourses = []
+//             let electricalNumberCourses = []
+//             let environmentalNumberCourses = []
+//             let civilNumberCourses = []
+//             let mechanicalNumberCourses = []
+//             for (let i = 0; i < currentData.length; i++) {
+//                 let labelsIndex = coursesLabels.indexOf(`${currentData[i].coursePrefix} ${currentData[i].courseNumber}`)
+//                 if (labelsIndex == -1) {
+//                     coursesLabels.push(`${currentData[i].coursePrefix} ${currentData[i].courseNumber}`)
+//                     biologicalNumberCourses.push(0)
+//                     computerNumberCourses.push(0)
+//                     electricalNumberCourses.push(0)
+//                     environmentalNumberCourses.push(0)
+//                     civilNumberCourses.push(0)
+//                     mechanicalNumberCourses.push(0)
+//                 }
+//             }
+//             for (let i = 0; i < currentData.length; i++) {
+//                 let labelsIndex = coursesLabels.indexOf(`${currentData[i].coursePrefix} ${currentData[i].courseNumber}`)
+//                 if (currentData[i].major === 'Electrical') {
+//                     electricalNumberCourses[labelsIndex] = electricalNumberCourses[labelsIndex] + 1;
+//                 }
+//                 if (currentData[i].major === 'Computer') {
+//                     computerNumberCourses[labelsIndex] = computerNumberCourses[labelsIndex] + 1;
+//                 }
+//                 if (currentData[i].major === 'Environmental') {
+//                     environmentalNumberCourses[labelsIndex] = environmentalNumberCourses[labelsIndex] + 1;
+//                 }
+//                 if (currentData[i].major === 'Civil') {
+//                     civilNumberCourses[labelsIndex] = civilNumberCourses[labelsIndex] + 1;
+//                 }
+//                 if (currentData[i].major === 'Mechanical/Aerospace') {
+//                     mechanicalNumberCourses[labelsIndex] = mechanicalNumberCourses[labelsIndex] + 1;
+//                 }
+//                 if (currentData[i].major === 'Biological') {
+//                     biologicalNumberCourses[labelsIndex] = biologicalNumberCourses[labelsIndex] + 1;
+//                 }
+//             }
+//             let data = {
+//                 labels: coursesLabels,
+//                 datasets: [{
+//                         label: 'Electrical',
+//                         backgroundColor: 'rgba(255, 20, 20, 0.2)',
+//                         data: electricalNumberCourses
+//                     }, {
+//                         label: 'Computer',
+//                         backgroundColor: 'rgba(10, 20, 255, 0.2)',
+//                         data: computerNumberCourses
+//                     }, {
+//                         label: 'Environmental',
+//                         backgroundColor: 'rgba(10, 0, 50, 0.5)',
+//                         data: environmentalNumberCourses
+//                     }, {
+//                         label: 'Civil',
+//                         backgroundColor: 'rgba(10, 200, 255, 0.2)',
+//                         data: civilNumberCourses
+//                     },
+//                     {
+//                         label: 'Mechanical',
+//                         backgroundColor: 'rgba(10, 100, 255, 0.2)',
+//                         data: mechanicalNumberCourses
+//                     }, {
+//                         label: 'Biological',
+//                         backgroundColor: 'rgba(10, 20, 200, 0.2)',
+//                         data: biologicalNumberCourses
+//                     }
+//                 ],
+//             }
+//             return data;
+//         }
+
+//  function generateUsageByIdData(currentData) {
+//             let aNumbers = [];
+//             let numberOfANumbers = [];
+//             for (let i = 0; i < currentData.length; i++) {
+//                 if (!aNumbers.includes(currentData[i].aNumber)) {
+//                     aNumbers.push(currentData[i].aNumber)
+//                     numberOfANumbers.push(1)
+//                 } else {
+//                     let index = aNumbers.indexOf(currentData[i].aNumber)
+//                     numberOfANumbers[index] = numberOfANumbers[index] + 1
+//                 }
+//             }
+//             if(numberOfANumbers.length>10){
+//                 let currentLowestUsage = 1;
+//                 while(numberOfANumbers.length>10){
+//                     let i = numberOfANumbers.length;
+//                 while(numberOfANumbers.includes(currentLowestUsage)){
+//                     if(numberOfANumbers[i]==currentLowestUsage){
+//                         numberOfANumbers.splice(i,1) 
+//                         aNumbers.splice(i,1)
+//                     }
+//                     i=i-1
+//                 }
+//                 currentLowestUsage = currentLowestUsage +1
+//             }
+//         }
+
+
+
+//             let data = {
+//                 labels: aNumbers,
+//                 datasets: [{
+//                     label: '',
+//                     backgroundColor: 'rgba(255, 0, 0, 0.5)',
+//                     data: numberOfANumbers
+//                 }],
+//             }
+//             return data;
+//         }
+
+//  function generateSessionLengthData(currentData) {
+//             let graduatesData = [0, 0, 0, 0, 0, 0]
+//             let seniorData = [0, 0, 0, 0, 0, 0]
+//             let juniorData = [0, 0, 0, 0, 0, 0]
+//             let sophomoreData = [0, 0, 0, 0, 0, 0]
+//             let freshmanData = [0, 0, 0, 0, 0, 0]
+
+//             let graduatesAmounts = [0, 0, 0, 0, 0, 0]
+//             let seniorAmounts = [0, 0, 0, 0, 0, 0]
+//             let juniorAmounts = [0, 0, 0, 0, 0, 0]
+//             let sophomoreAmounts = [0, 0, 0, 0, 0, 0]
+//             let freshmanAmounts = [0, 0, 0, 0, 0, 0]
+
+//             let majorArrayIndex = ['Electrical', 'Computer', 'Environmental', 'Civil', 'Mechanical/Aerospace', 'Biological']
+//             for (let i = 0; i < currentData.length; i++) {
+//                 if (currentData[i].classRank == 'Senior') {
+//                     let index = majorArrayIndex.indexOf(currentData[i].major)
+//                     if(currentData[i].totalMinutes>0){
+//                      seniorData[index] = (seniorData[index] + currentData[i].totalMinutes)/(seniorAmounts[index]+1);
+//                     seniorAmounts[index] = seniorAmounts[index] + 1;
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Junior') {
+//                     let index = majorArrayIndex.indexOf(currentData[i].major)
+//                     if(currentData[i].totalMinutes>0){
+//                     juniorData[index] = (juniorData[index] + currentData[i].totalMinutes)/(juniorAmounts[index]+1);
+//                     juniorAmounts[index] = juniorAmounts[index] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Sophomore') {
+//                     let index = majorArrayIndex.indexOf(currentData[i].major)
+//                     if(currentData[i].totalMinutes>0){
+//                     sophomoreData[index] = (sophomoreData[index] + currentData[i].totalMinutes)/(sophomoreAmounts[index]+1);
+//                     sophomoreAmounts[index] = sophomoreAmounts[index] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Freshman') {
+//                     let index = majorArrayIndex.indexOf(currentData[i].major)
+//                     if(currentData[i].totalMinutes>0){
+//                     freshmanData[index] = (freshmanData[index] + currentData[i].totalMinutes)/(freshmanAmounts[index]+1);
+//                     freshmanAmounts[index] = freshmanAmounts[index] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Graduates') {
+//                     let index = majorArrayIndex.indexOf(currentData[i].major)
+//                     if(currentData[i].totalMinutes>0){
+//                     graduatesData[index] = (graduatesData[index] + currentData[i].totalMinutes)/(graduatesAmounts[index]+1);
+//                     graduatesAmounts[index] = graduatesAmounts[index] + 1
+//                     }
+//                 }
+//             }
+//             let data = {
+//                 labels: majorArrayIndex,
+//                 datasets: [{
+//                         label: 'Graduate',
+//                         backgroundColor: 'rgba(255, 20, 20, 0.2)',
+//                         data: graduatesData
+//                     }, {
+//                         label: 'Senior',
+//                         backgroundColor: 'rgba(10, 20, 200, 0.2)',
+//                         data: seniorData
+//                     }, {
+//                         label: 'Junior',
+//                         backgroundColor: 'rgba(25, 150, 100, 0.2)',
+//                         data: juniorData
+//                     },
+//                     {
+//                         label: 'Sophomore',
+//                         backgroundColor: 'rgba(0, 150, 250, 0.2)',
+//                         data: sophomoreData
+//                     },
+//                     {
+//                         label: 'Freshman',
+//                         backgroundColor: 'rgba(125, 0, 150, 0.2)',
+//                         data: freshmanData
+//                     }
+//                 ],
+//             }
+//             return data;
+//         }
+
+//  function generateConfidenceData(currentData) {
+//             let labels = ['1 Not confidence at all', '2 Somewhat unconfident', '3 Neutral', '4 Somewhat confident',
+//                 '5 Very Confident'
+//             ]
+//             let graduatesData = [0, 0, 0, 0, 0]
+//             let seniorData = [0, 0, 0, 0, 0]
+//             let juniorData = [0, 0, 0, 0, 0]
+//             let sophomoreData = [0, 0, 0, 0, 0]
+//             let freshmenData = [0, 0, 0, 0, 0]
+//             for (let i = 0; i < currentData.length; i++) {
+//                 let index = currentData[i].confidence - 1
+//                 if (currentData[i].classRank == 'Graduate') {
+//                     graduatesData[index] = graduatesData[index] + 1
+//                 }
+//                 if (currentData[i].classRank == 'Senior') {
+//                     seniorData[index] = seniorData[index] + 1
+//                 }
+//                 if (currentData[i].classRank == 'Junior') {
+//                     juniorData[index] = juniorData[index] + 1
+//                 }
+//                 if (currentData[i].classRank == 'Sophomore') {
+//                     sophomoreData[index] = sophomoreData[index] + 1
+//                 }
+//                 if (currentData[i].classRank == 'Freshman') {
+//                     freshmenData[index] = freshmenData[index] + 1
+//                 }
+//             }
+//             let data = {
+//                 labels: labels,
+//                 datasets: [{
+//                         label: 'Graduate',
+//                         backgroundColor: 'rgba(255, 20, 20, 0.5)',
+//                         data: graduatesData
+//                     }, {
+//                         label: 'Senior',
+//                         backgroundColor: 'rgba(10, 20, 255, 0.2)',
+//                         data: seniorData
+//                     }, {
+//                         label: 'Junior',
+//                         backgroundColor: 'rgba(100, 50, 140, 0.5)',
+//                         data: juniorData
+//                     },
+//                     {
+//                         label: 'Sophomore',
+//                         backgroundColor: 'rgba(60, 90, 255, 0.5)',
+//                         data: sophomoreData
+//                     },
+//                     {
+//                         label: 'Freshman',
+//                         backgroundColor: 'rgba(40, 20, 12, 0.7)',
+//                         data: freshmenData
+//                     }
+//                 ],
+//             }
+//             return data;
+//         }
+
+//  function generatePurposeOfVisitsData(currentData) {
+//             let labels = ['Homework Help', 'Exam Preparation', 'Group Study Session', 'Presentation Practice', 'Other']
+//             let graduatesData = [0, 0, 0, 0, 0]
+//             let seniorData = [0, 0, 0, 0, 0]
+//             let juniorData = [0, 0, 0, 0, 0]
+//             let sophomoreData = [0, 0, 0, 0, 0]
+//             let freshmenData = [0, 0, 0, 0, 0]
+//             for (let i = 0; i < currentData.length; i++) {
+//                 let index = labels.indexOf(currentData[i].purposeOfVisit)
+//                 if (currentData[i].classRank == 'Graduate') {
+//                     if (index != -1) {
+//                         graduatesData[index] = graduatesData[index] + 1
+//                     } else {
+//                         graduatesData[4] = graduatesData[4] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Senior') {
+//                     if (index != -1) {
+//                         seniorData[index] = seniorData[index] + 1
+//                     } else {
+//                         seniorData[4] = seniorData[4] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Junior') {
+//                     if (index != -1) {
+//                         juniorData[index] = juniorData[index] + 1
+//                     } else {
+//                         juniorData[4] = juniorData[4] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Sophomore') {
+//                     if (index != -1) {
+//                         sophomoreData[index] = sophomoreData[index] + 1
+//                     } else {
+//                         sophomoreData[4] = sophomoreData[4] + 1
+//                     }
+//                 }
+//                 if (currentData[i].classRank == 'Freshman') {
+//                     if (index != -1) {
+//                         freshmenData[index] = freshmenData[index] + 1
+//                     } else {
+//                         freshmenData[4] = freshmenData[4] + 1
+//                     }
+//                 }
+//             }
+//             let data = {
+//                 labels: labels,
+//                 datasets: [{
+//                         label: 'Graduate',
+//                         backgroundColor: 'rgba(255, 20, 20, 0.2)',
+//                         data: graduatesData
+//                     }, {
+//                         label: 'Senior',
+//                         backgroundColor: 'rgba(200, 20, 255, 0.5)',
+//                         data: seniorData
+//                     }, {
+//                         label: 'Junior',
+//                         backgroundColor: 'rgba(0, 150, 150, 0.2)',
+//                         data: juniorData
+//                     },
+//                     {
+//                         label: 'Sophomore',
+//                         backgroundColor: 'rgba(100, 20, 60, 0.5)',
+//                         data: sophomoreData
+//                     },
+//                     {
+//                         label: 'Freshman',
+//                         backgroundColor: 'rgba(30, 40, 90, 0.2)',
+//                         data: freshmenData
+//                     }
+//                 ],
+//             }
+//             return data;
+//         }
+
+    </script>
+
+ 
+
+    <script>
+        "use strict";
+/***
+ * Tutor Center Application
+ * 
+ *
+ * 
+ *
+ * Author: Trax Bagley
+ * Author Email: trax.bagley@gmail.com
+ * Author website: 
+ ***/
+
+//  let prefixesCount = [];
+
+// let chart = null;
+// function dateRangeFiller() {
+// 	let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+// 				  "October", "November", "December"
+// 				 ];
+// 	let options = ''
+// 	for (let i = 0; i < inPersonTrackerData.length; i++) {
+// 		let date = new Date(inPersonTrackerData[i].date)
+// 		let dateString = `${months[date.getMonth()]} ${date.getDate()},${date.getFullYear()}`
+// 		if (!dateRange.includes(dateString)) {
+// 			dateRange.push(dateString)
+// 		}
+//     }
+//     dateRange.sort(function(a,b){
+//         let aDate = new Date(a)
+//         let bDate = new Date(b)
+//         if(aDate.getTime() < bDate.getTime()){
+//             return -1;
+//         } else if(aDate.getTime() > bDate.getTime()){
+//             return 1;
+//         }
+//         return 0;
+//     })
+// 	for (let i = 0; i < dateRange.length; i++) {
+// 		options = options + `<option selected value="${dateRange[i]}">${dateRange[i]}</option>`
+// 	}
+// 	return options;
+// }
+
+// function courseSelectFiller() {
+// 	let options = ''
+// 	for (let i = 0; i < courses.length; i++) {
+// 		options = options + `<option selected value="${courses[i].course}">${courses[i].course}</options>`
+// 	}
+// 	return options;
+// }
+
+// function coursePrefixSelectFiller() {
+//     let options = '';
+//     let prefixes = [];
+//     prefixesCount = {};
+// 	for (let i = 0; i < courses.length; i++) {
+//         if(prefixes.includes(courses[i].coursePrefix)) {
+//             let key = courses[i].coursePrefix
+//             prefixesCount[key] = prefixesCount[key] + 1
+//         }else{
+//             options = options +`<option selected value="${courses[i].coursePrefix}">${courses[i].coursePrefix}</options>`
+//             prefixes.push(courses[i].coursePrefix)
+//             let key = courses[i].coursePrefix
+//             prefixesCount[key]=1
+//             }
+//     }
+// 	return options;
+// }
+// function getCoursesPerPrefixCount(){
+//     return prefixesCount;
+// }
+// function aNumberFiller() {
+// 	let uniqueANumbers = []
+// 	let options = ''
+// 	for (let i = 0; i < inPersonTrackerData.length; i++) {
+// 		if (!uniqueANumbers.includes(inPersonTrackerData[i].aNumber)) {
+// 			uniqueANumbers.push(inPersonTrackerData[i].aNumber)
+// 			options = options +
+// 				`<option selected value="${inPersonTrackerData[i].aNumber}">${inPersonTrackerData[i].aNumber}</options>`
+// 		}
+// 	}
+// 	return options
+// }
+// document.querySelector('#nav-hourly-analysis-link').addEventListener('click',function(){
+// 	hourlyAnalysisSetupAndAllData();
+// })
+// document.querySelector('#nav-daily-analysis-link').addEventListener('click',function(){
+// 	dailyAnalysisSetupAndAllData();
+// })
+// document.querySelector('#nav-usage-link').addEventListener('click',function(){
+// 	usageSetupAndAllData();
+// })
+// document.querySelector('#nav-top-courses-link').addEventListener('click',function(){
+// 	topCourseSetupAndAllData();
+// })
+// document.querySelector('#nav-usage-by-id-link').addEventListener('click',function(){
+// 	usageByIdSetupAndAllData();
+// })
+// document.querySelector('#nav-session-length-link').addEventListener('click',function(){
+// 	sessionLengthSetupAndAllData();
+// })
+// document.querySelector('#nav-confidence-level-link').addEventListener('click',function(){
+// 	confidenceLevelSetupAndAllData();
+// })
+// document.querySelector('#nav-purpose-of-visit-link').addEventListener('click',function(){
+// 	purposeOfVisitSetupAndAllData();
+// })        
+
+
+// function hourlyAnalysisSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	document.querySelector('#hourlyAnalysisDateRange').innerHTML = '';
+// 	document.querySelector('#hourlyAnalysisDateRange').innerHTML = dateRangeFiller();
+// 	let data = generateHourlyAnalysisData(inPersonTrackerData, allLabels)
+// 	let graphOptions = generateOptions('hourlyAnalysisChart')
+// 	generateGraph(data, 'bar', 'hourlyAnalysisChart', graphOptions)
+// 	console.log("generate hourly analysis")
+// }
+
+// function dailyAnalysisSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	document.querySelector('#dailyAnalysisDateRange').innerHTML = '';
+// 	document.querySelector('#dailyAnalysisDateRange').innerHTML = dateRangeFiller();
+// 	let data = generateDailyAnalysisData(inPersonTrackerData, allLabels)
+// 	let graphOptions = generateOptions('dailyAnalysisChart')
+// 	generateGraph(data, 'bar', 'dailyAnalysisChart', graphOptions)
+// }
+
+// function usageSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	document.querySelector('#usageDateSelect').innerHTML = '';
+// 	document.querySelector('#usageDateSelect').innerHTML = dateRangeFiller();
+// 	let data = generateUsageData(inPersonTrackerData, dateRange)
+// 	let graphOptions = generateOptions('usageChart')
+// 	generateGraph(data, 'line', 'usageChart', graphOptions)
+// }
+
+// function topCourseSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	document.querySelector('#topCoursesDateSelect').innerHTML = '';
+// 	document.querySelector('#topCoursesDateSelect').innerHTML = dateRangeFiller();
+// 	document.querySelector('#topCoursesCourseSelect').innerHTML = courseSelectFiller();
+// 	let data = generateTopCoursesData(inPersonTrackerData)
+// 	let graphOptions = generateOptions('topCourses')
+// 	generateGraph(data, 'horizontalBar', 'topCourses', graphOptions)
+// }
+
+// function usageByIdSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	document.querySelector('#aNumber').innerHTML = aNumberFiller();
+// 	let data = generateUsageByIdData(inPersonTrackerData);
+// 	let graphOptions = generateOptions('usageById')
+// 	generateGraph(data, 'bar', 'usageById', graphOptions)
+// }
+
+// function sessionLengthSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	document.querySelector('#sessionLengthDateRange').innerHTML = dateRangeFiller();
+// 	let data = generateSessionLengthData(inPersonTrackerData)
+// 	let graphOptions = generateOptions('sessionLength')
+// 	generateGraph(data, 'bar', 'sessionLengthId', graphOptions)
+// }
+
+// function confidenceLevelSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	let data = generateConfidenceData(inPersonTrackerData)
+// 	let graphOptions = generateOptions('confidenceLevel')
+// 	generateGraph(data, 'bar', 'confidenceLevel', graphOptions)
+// }
+
+// function purposeOfVisitSetupAndAllData() {
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+// 	let data = generatePurposeOfVisitsData(inPersonTrackerData)
+// 	let graphOptions = generateOptions('purposeOfVisit')
+// 	generateGraph(data, 'bar', 'purposeOfVisit', graphOptions)
+// }
+
+
+
+// document.querySelector("#hourlyAnalysisDateRange").addEventListener('change', function () {
+// 	hourlyAnalysisSetupFilterData();
+// })
+// document.querySelector("#hourlyAnalysisHourSelect").addEventListener('change', function () {
+// 	hourlyAnalysisSetupFilterData();
+// })
+// document.querySelector("#hourlyAnalysisDayOfTheWeekSelect").addEventListener('change', function () {
+// 	hourlyAnalysisSetupFilterData();
+// })
+// document.querySelector('#dailyAnalysisDateRange').addEventListener('change', function () {
+// 	dailyAnalysisSetupFilterData();
+// })
+// document.querySelector('#dailyAnalysisHourSelect').addEventListener('change', function () {
+// 	dailyAnalysisSetupFilterData();
+// })
+// document.querySelector('#dailyAnalysisMajorSelect').addEventListener('change', function () {
+// 	dailyAnalysisSetupFilterData();
+// })
+// document.querySelector('#usageDateSelect').addEventListener('change', function () {
+// 	usageSetupFilterData();
+// })
+// document.querySelector('#topCoursesDateSelect').addEventListener('change', function () {
+// 	topCoursesSetupFilterData()
+// })
+// document.querySelector('#topCoursesCourseSelect').addEventListener('change', function () {
+// 	topCoursesSetupFilterData()
+// })
+// document.querySelector('#topCoursesMajorSelect').addEventListener('change', function () {
+// 	topCoursesSetupFilterData()
+// })
+// document.querySelector('#aNumber').addEventListener('change', function () {
+// 	usageByIdSetupFilterData();
+// })
+// document.querySelector('#sessionLengthDateRange').addEventListener('change', function () {
+// 	sessionFiltersSetupFilterData()
+// })
+// document.querySelector('#sessionLengthMajor').addEventListener('change', function () {
+// 	sessionFiltersSetupFilterData()
+// })
+// document.querySelector('#sessionLengthRank').addEventListener('change', function () {
+// 	sessionFiltersSetupFilterData()
+// })
+// document.querySelector('#confidenceSelectConfidence').addEventListener('change', function () {
+// 	confidenceFiltersSetupFilterData()
+// })
+// document.querySelector('#confidenceSelectRank').addEventListener('change', function () {
+// 	confidenceFiltersSetupFilterData()
+// })
+// document.querySelector('#purposeOfVisitSelect').addEventListener('change', function () {
+// 	purposeOfVisitFiltersSetupFilterData()
+// })
+// document.querySelector('#purposeOfVisitRankSelect').addEventListener('change', function () {
+// 	purposeOfVisitFiltersSetupFilterData()
+// })
+
+
+// function generateGraph(enteredData, enteredType, canvasIdToLoadInto, enteredOptions,dontDestroy) {
+// 	var canvas = document.getElementById(canvasIdToLoadInto).getContext('2d');
+//     //canvas.clearRect(0,0,canvas.width,100,100)
+//     let chart = ''
+// 	if(chart && dontDestroy==false){
+// 		chart.destroy()
+//     }
+// 	chart = new Chart(canvas, {
+// 		type: enteredType,
+// 		data: enteredData,
+// 		options: enteredOptions
+// 	})
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-none')
+// 	document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-flex')
+// }
+
+
+
+// document.querySelector('#coursePrefixSelectGeneratePDFModal').addEventListener('change', function () {
+// 	fillCourseFromPrefix()
+// })
+
+
+// document.querySelector('#selectDataToGenerateFromSelect').addEventListener('change', function () {
+// 	if (document.querySelector('#selectDataToGenerateFromSelect').value == "Filter Dates") {
+// 		document.querySelector('#generatePDFReportFilterDateSelectContainer').classList.remove('d-none')
+// 	} else {
+// 		document.querySelector('#generatePDFReportFilterDateSelectContainer').classList.add('d-none')
+// 	}
+// })
+// document.querySelector('#selectSymesterSelect').addEventListener('change', function () {
+// 	let selectedSymesterDateRange = document.querySelector('#selectSymesterSelect').value
+// 	if (selectedSymesterDateRange != '') {
+// 		let splitSelectedSymesterDateRange = selectedSymesterDateRange.split(',')
+// 		document.querySelector('#generatePDFReportFromDateInput').value =splitSelectedSymesterDateRange[0]
+// 		document.querySelector('#generatePDFReportToDateInput').value = splitSelectedSymesterDateRange[1]
+// 	}
+// })
+// document.querySelectorAll('.btn-sm').forEach(button=>
+// button.addEventListener('click',()=>{
+//     switch(button.id){
+//         case 'graph-select-deselect-all':
+//             selectDeselectSelects(button,"#selectGraphsToInclude")
+//             break;
+//         case 'service-select-deselect-all':
+//             selectDeselectSelects(button,"#selectServiceGeneratePDFReport") 
+//             break;
+//         case 'course-prefix-select-deselect-all':
+//             selectDeselectSelects(button,"#coursePrefixSelectGeneratePDFModal")
+//             fillCourseFromPrefix();
+//             break;
+//         case 'confidence-select-deselect-all':
+//             selectDeselectSelects(button,"#selectConfidencePDFReport")
+//             break;
+//         case 'course-select-deselect-all':
+//             selectDeselectSelects(button,"#selectCourseGeneratePDFReportSelect")
+//             break;
+//         case 'aNumber-select-deselect-all': 
+//             selectDeselectSelects(button,"#ANumberSelectGeneratePDFModal")
+//             break;
+//         case 'student-major-select-deselect-all':
+//             selectDeselectSelects(button,"#selectMajorGeneratePDFReport")
+//             break;
+//         case 'department-select-deselect-all': 
+//             selectDeselectSelects(button,"#selectDepartmentGeneratePDFReport")
+//             break;
+//     }
+// }))
+
+// function selectDeselectSelects(button,selectElement){
+//     let select = document.querySelector(selectElement);
+//     if(button.innerHTML=="Deselect All"){
+//     for(let i=0;i<select.options.length;i++){
+//         select.options[i].selected=false;
+//      }
+//      button.innerHTML = "Select All"
+//     }
+//     else{
+//         for(let i=0;i<select.options.length;i++){
+//             select.options[i].selected=true;
+//      }
+//      button.innerHTML = "Deselect All"
+//     }
+// }
+
+
+// document.querySelector('#generatePDFButton').addEventListener('click', function () {
+// 	document.querySelector('#generatePDFProgressBar').style.width='5%'
+// 	document.querySelector('#pdfGenerateReportCanvasContainer').classList.remove('d-none')
+// 	document.querySelector('#progressContainer').classList.remove('d-none')
+// 	const selectedGraphs = document.querySelectorAll('#selectGraphsToInclude option:checked');
+// 	const valuesGraphs = Array.from(selectedGraphs).map(el => el.value);
+// 	const selectedCourses = document.querySelectorAll('#selectCourseGeneratePDFReportSelect option:checked')
+// 	const valuesCourses = Array.from(selectedCourses).map(el => el.value);
+// 	const selectedMajor = document.querySelectorAll('#selectMajorGeneratePDFReport option:checked')
+// 	const valuesMajor = Array.from(selectedMajor).map(el => el.value);
+// 	const selectedDepartment = document.querySelectorAll('#selectDepartmentGeneratePDFReport option:checked')
+// 	const valuesDepartment = Array.from(selectedDepartment).map(el => el.value);
+// 	const selectService = document.querySelectorAll('#selectServiceGeneratePDFReport option:checked')
+// 	const valuesService = Array.from(selectService).map(el => el.value)
+// 	const selectConfidence = document.querySelectorAll('#selectConfidencePDFReport option:checked')
+// 	const valuesConfidence = Array.from(selectConfidence).map(el => el.value)
+// 	const selectANumber = document.querySelectorAll('#ANumberSelectGeneratePDFModal option:checked')
+// 	const valuesANumber = Array.from(selectANumber).map(el => el.value)
+// 	let title = document.querySelector('#reportTitleTextInput').value
+// 	let startDate = ''
+// 	let endDate = ''
+// 	let dateValues = []
+// 	if (document.querySelector('#selectDataToGenerateFromSelect').value == "All Date Range") {
+// 		dateValues = dateRange;
+// 		startDate = dateRange[0]
+// 		endDate = dateRange[dateRange.length-1]
+// 	}
+// 	if (document.querySelector('#selectDataToGenerateFromSelect').value == "Filter Dates") {
+// 		startDate = document.querySelector('#generatePDFReportFromDateInput').value
+// 		endDate = document.querySelector('#generatePDFReportToDateInput').value
+// 		let splitStartDate = startDate.split('-')
+// 		let splitEndDate = endDate.split('-')
+// 		let dateStartObj = new Date(splitStartDate[0], splitStartDate[1] - 1, splitStartDate[2])
+// 		let dateEndObj = new Date(splitEndDate[0], splitEndDate[1] - 1, splitEndDate[2])
+// 		dateValues = getDateRangeBetweenTwoDates(dateStartObj, dateEndObj)
+// 	}
+
+// 	generateReportFilters(valuesGraphs, valuesCourses, valuesMajor, valuesDepartment, valuesService,valuesConfidence, valuesANumber, dateValues);
+// 	setTimeout(function(){
+// 		generatePDFReport(title, `${startDate} - ${endDate}`, valuesGraphs, valuesDepartment,valuesMajor, valuesCourses, valuesConfidence,valuesService)
+// 	},100)
+// })
+
+// function fillCourseFromPrefix() {
+// 	const selectedPrefix = document.querySelectorAll('#coursePrefixSelectGeneratePDFModal option:checked');
+// 	const valuesPrefixSelected = Array.from(selectedPrefix).map(el => el.value);
+// 	let selectedCourses = '';
+// 	for (let i = 0; i < courses.length; i++) {
+// 		if (valuesPrefixSelected.includes(courses[i].coursePrefix)) {
+// 			selectedCourses = selectedCourses +
+// 				`<option selected value="${courses[i].course}">${courses[i].course}</option>`
+// 		}
+// 	}
+// 	document.querySelector('#selectCourseGeneratePDFReportSelect').innerHTML = selectedCourses
+// }
+
+function getAllCourses(){
+    return courses;
+}
+
+
+
+
+// function convertArrayToStringForPDF(array) {
+// 	let lines = []
+// 	let line = ''
+// 	for (let i = 0; i < array.length; i++) {
+// 		if (line.length <= 50)
+// 			line = line + array[i] + ', '
+// 			else {
+// 				lines.push(line)
+// 				line = array[i]
+// 			}
+// 	}
+// 	if (line.length <= 100) {
+// 		lines.push(line)
+// 	}
+// 	return lines
+// }
+
+// function getDateRangeBetweenTwoDates(beginDate, endDate) {
+// 	let tempDateRange = []
+// 	let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
+// 	for (let i = 0; i < inPersonTrackerData.length; i++) {
+// 		let tempDate = new Date(inPersonTrackerData[i].Date)
+// 		if (tempDate > beginDate && tempDate < endDate) {
+// 			let dateString = `${months[tempDate.getMonth()]} ${tempDate.getDate()},${tempDate.getFullYear()}`
+// 			tempDateRange.push(dateString)
+// 		}
+// 	}
+// 	return tempDateRange;
+// }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+<script >
+    "use strict";
+    /***
+     * Tutor Center Application
+     * 
+     *
+     * 
+     *
+     * Author: Trax Bagley
+     * Author Email: trax.bagley@gmail.com
+     * Author website: 
+     ***/
+    //  let inPersonTrackerData = [];
+    //  let unAlteredInPersonTrackerdata=[];
+    // let currentFilteredData = [];
+    // let currentSelectedLabels = ['8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM',
+    //                              '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM',
+    //                              '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM',
+    //                              '8:30 PM', '9:00 PM'
+    //                             ];
+    // let dateRange = [];
+    // let dateRangeOptions = [];
+    // let courses = []
+    // let allDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    // const allLabels = ['8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+    //                    '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM',
+    //                    '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM', '8:30 PM',
+    //                    '9:00 PM'
+    //                   ]
+    
+    //     db.collection("courses").get().then(function (querySnapshot) {
+    //     let list = "";
+    //     querySnapshot.forEach(function (doc) {
+    //         let data = doc.data();
+    //         courses.push(data)
+    //     })
+    //     document.querySelector('#coursePrefixSelectGeneratePDFModal').innerHTML =coursePrefixSelectFiller();
+    //     fillCourseFromPrefix();
+    
+    // });
+    
+    // db.collection("inPersonTracker").get().then(function (querySnapshot) {
+    //     let list = "";
+    //     return querySnapshot.forEach(function (doc) {
+    //         let data = doc.data();
+    //         inPersonTrackerData.push(data)
+    //         unAlteredInPersonTrackerdata.push(doc.data())
+    //     })
+    // }).then(() => {
+    //         calculateNumberHoursForEachEntry();
+    //         Object.freeze(inPersonTrackerData);
+    //         currentFilteredData = [...inPersonTrackerData];
+    //         hourlyAnalysisSetupAndAllData();
+    //         document.querySelector('#ANumberSelectGeneratePDFModal').innerHTML = aNumberFiller()
+    //     })//.catch((error) => {
+    //         //console.log("error in the promise " + error.message)
+    // //});
+    
+
+    // function hourlyAnalysisSetupFilterData() {
+    
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             currentFilteredData = []
+    //             currentSelectedLabels = [...allLabels]
+    //             const selectedDay = document.querySelectorAll('#hourlyAnalysisDayOfTheWeekSelect option:checked');
+    //             const valuesDay = Array.from(selectedDay).map(el => el.value);
+    //             let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //             hourlyAnalysisDayOfTheWeekSelectFilter(valuesDay, 'hourlyAnalysis', currentFilteredDataCopy)
+    //             const selectedHours = document.querySelectorAll('#hourlyAnalysisHourSelect option:checked');
+    //             const valuesHours = Array.from(selectedHours).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             hourlySelectFilter(valuesHours, 'hourlyAnalysis', currentFilteredDataCopy)
+        
+    //             const selectedDateRange = document.querySelectorAll('#hourlyAnalysisDateRange option:checked');
+    //             const valuesDateRange = Array.from(selectedDateRange).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             let data = dateRangeFilter(valuesDateRange, 'hourlyAnalysis', currentFilteredDataCopy)
+        
+    //             let graphOptions = generateOptions('hourlyAnalysisChart')
+    //             generateGraph(data, 'bar', 'hourlyAnalysisChart', graphOptions)
+    //         }
+    
+    // function dailyAnalysisSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedMajors = document.querySelectorAll('#dailyAnalysisMajorSelect option:checked')
+    //             const valuesMajors = Array.from(selectedMajors).map(el => el.value);
+    //             currentFilteredData = [];
+    //             currentSelectedLabels = [...allLabels]
+    //             let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //             let data = majorFilter(valuesMajors, 'dailyAnalysis', currentFilteredDataCopy)
+    
+    //             const selectedHours = document.querySelectorAll('#dailyAnalysisHourSelect option:checked');
+    //             const valuesHours = Array.from(selectedHours).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             data = hourlySelectFilter(valuesHours, 'dailyAnalysis', currentFilteredDataCopy)
+    
+    //             const selectedDateRange = document.querySelectorAll('#dailyAnalysisDateRange option:checked');
+    //             const valuesDateRange = Array.from(selectedDateRange).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             data = dateRangeFilter(valuesDateRange, 'dailyAnalysis', currentFilteredDataCopy)
+    
+    //             let graphOptions = generateOptions('dailyAnalysisChart')
+    //             generateGraph(data, 'bar', 'dailyAnalysisChart', graphOptions)
+    //         }
+    
+    //  function usageSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedDateRange = document.querySelectorAll('#usageDateSelect option:checked');
+    //             const valuesDateRange = Array.from(selectedDateRange).map(el => el.value);
+    //             let graphOptions = generateOptions('usageChart')
+    //             let data = generateUsageData(inPersonTrackerData, valuesDateRange)
+    //             generateGraph(data, 'line', 'usageChart', graphOptions)
+    //         }
+    
+    //  function topCoursesSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedMajors = document.querySelectorAll('#topCoursesMajorSelect option:checked');
+    //             const valuesMajors = Array.from(selectedMajors).map(el => el.value);
+    //             let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //             currentFilteredData = []
+    //             let data = majorFilter(valuesMajors, 'topCourses', currentFilteredDataCopy)
+    
+    //             const selectedDateRange = document.querySelectorAll('#topCoursesDateSelect option:checked');
+    //             const valuesDateRange = Array.from(selectedDateRange).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             let graphOptions = generateOptions('topCourses')
+    //             data = dateRangeFilter(valuesDateRange, 'topCourses', currentFilteredDataCopy)
+    
+    //             const selectedCourses = document.querySelectorAll('#topCoursesCourseSelect option:checked');
+    //             const valuesCourses = Array.from(selectedCourses).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             data = courseFilter(valuesCourses, 'topCourses', currentFilteredDataCopy)
+    
+    //             generateGraph(data, 'horizontalBar', 'topCourses', graphOptions)
+    //         }
+    
+    //  function usageByIdSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedANumbers = document.querySelectorAll('#aNumber option:checked');
+    //             const valuesANumbers = Array.from(selectedANumbers).map(el => el.value);
+    //             currentFilteredData = []
+    //             let data = aNumberFilter(valuesANumbers, 'usageById', inPersonTrackerData)
+    //             let graphOptions = generateOptions('usageById')
+    //             generateGraph(data, 'bar', 'usageById', graphOptions)
+    //         }
+    
+    //  function sessionFiltersSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedDateRange = document.querySelectorAll('#sessionLengthDateRange option:checked');
+    //             const valuesDateRange = Array.from(selectedDateRange).map(el => el.value);
+    //             currentFilteredData = []
+    //             let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //             dateRangeFilter(valuesDateRange, 'sessionLength', currentFilteredDataCopy)
+    
+    //             const selectedMajors = document.querySelectorAll('#sessionLengthMajor option:checked');
+    //             const valuesMajors = Array.from(selectedMajors).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             majorFilter(valuesMajors, 'sessionLength', currentFilteredDataCopy)
+    
+    //             const selectedRanks = document.querySelectorAll('#sessionLengthRank option:checked');
+    //             const valuesRanks = Array.from(selectedRanks).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             let data = rankFilter(valuesRanks, 'sessionLength', currentFilteredDataCopy)
+    //             let graphOptions = generateOptions('sessionLength')
+    //             generateGraph(data, 'bar', 'sessionLengthId', graphOptions)
+    //         }
+    
+    //  function confidenceFiltersSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedRanks = document.querySelectorAll('#confidenceSelectRank option:checked');
+    //             const valuesRanks = Array.from(selectedRanks).map(el => el.value);
+    //             let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //             currentFilteredData = []
+    //             rankFilter(valuesRanks, '', currentFilteredDataCopy)
+    
+    //             const selectedConfidenceLevel = document.querySelectorAll('#confidenceSelectConfidence option:checked');
+    //             const selectedConfidenceLevelValue = Array.from(selectedConfidenceLevel).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             let data = confidenceFilter(selectedConfidenceLevelValue, 'confidenceLevel', currentFilteredDataCopy)
+    
+    //             let graphOptions = generateOptions('confidenceLevel')
+    //             generateGraph(data, 'bar', 'confidenceLevel', graphOptions)
+    //         }
+    
+    //  function purposeOfVisitFiltersSetupFilterData() {
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.remove('d-none')
+    //             document.querySelector('#generatingGraphLoadingSpinner').classList.add('d-flex')
+    //             const selectedRanks = document.querySelectorAll('#purposeOfVisitRankSelect option:checked');
+    //             const valuesRanks = Array.from(selectedRanks).map(el => el.value);
+    //             let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //             currentFilteredData = []
+    //             rankFilter(valuesRanks, '', currentFilteredDataCopy)
+    
+    //             const selectedPurposeOfVisit = document.querySelectorAll('#purposeOfVisitSelect option:checked');
+    //             const selectedPurposeOfVisitValues = Array.from(selectedPurposeOfVisit).map(el => el.value);
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             let data = purposeOfVisitFilter(selectedPurposeOfVisitValues, currentFilteredDataCopy)
+    //             let graphOptions = generateOptions('purposeOfVisit')
+    
+    //             generateGraph(data, 'bar', 'purposeOfVisit', graphOptions)
+    //         }
+    
+    //  function dateRangeFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].date)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = '';
+    //             if (graphToGenerateDataFor === 'hourlyAnalysis') {
+    //                 data = generateHourlyAnalysisData(currentFilteredData, currentSelectedLabels)
+    //             }
+    //             if (graphToGenerateDataFor === 'dailyAnalysis') {
+    //                 data = generateDailyAnalysisData(currentFilteredData, currentSelectedLabels)
+    //             }
+    //             if (graphToGenerateDataFor === 'topCourses') {
+    //                 data = generateTopCoursesData(currentFilteredData)
+    //             }
+    //             return data;
+    //         }
+    
+    //  function hourlySelectFilter(values, graphToGenerateDataFor, currentData) {
+    //             currentSelectedLabels = [];
+    //             let indexOfPreviousArrayPutIntoFilteredArray = []
+    //             for (let i = 0; i < allLabels.length; i++) {
+    
+    //                 if (values.includes(allLabels[i])) {
+    //                     currentSelectedLabels.push(allLabels[i])
+    //                     indexOfPreviousArrayPutIntoFilteredArray.push(i)
+    //                 }
+    //             }
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 let newHoursInTutorCenter = [];
+    //                 for (let hour = 0; hour < currentData[i].hoursInTutorCenter.length; hour++) {
+    //                     if (indexOfPreviousArrayPutIntoFilteredArray.includes(hour)) {
+    //                         newHoursInTutorCenter.push(currentData[i].hoursInTutorCenter[hour]);
+    //                     }
+    //                 }
+    //                 currentFilteredData.push(currentData[i])
+    //                 currentFilteredData[i].hoursInTutorCenter = newHoursInTutorCenter
+    //             }
+    //             let data = '';
+    //             if (graphToGenerateDataFor === 'hourlyAnalysis') {
+    //                 data = generateHourlyAnalysisData(currentFilteredData, currentSelectedLabels);
+    //             }
+    //             if (graphToGenerateDataFor === 'dailyAnalysis') {
+    //                 data = generateDailyAnalysisData(currentFilteredData, currentSelectedLabels);
+    //             }
+    //             return data;
+    //         }
+    
+    //  function hourlyAnalysisDayOfTheWeekSelectFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].dayOfWeek)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = ''
+    //             if (graphToGenerateDataFor === 'hourlyAnalysis') {
+    //                 data = generateHourlyAnalysisData(currentFilteredData, currentSelectedLabels);
+    //             }
+    //             if (graphToGenerateDataFor === 'dailyAnalysis') {
+    //                 data = generateDailyAnalysisData(currentFilteredData, currentSelectedLabels);
+    //             }
+    //             return data;
+    //         }
+    
+    //  function majorFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].major)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = '';
+    //             if (graphToGenerateDataFor == 'dailyAnalysis') {
+    //                 data = generateDailyAnalysisData(currentFilteredData, currentSelectedLabels)
+    //             }
+    //             if (graphToGenerateDataFor == 'topCourses') {
+    //                 data = generateTopCoursesData(currentFilteredData)
+    //             }
+    //             return data;
+    //         }
+    
+    //  function rankFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].classRank)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = ''
+    //             if (graphToGenerateDataFor == 'sessionLength') {
+    //                 data = generateSessionLengthData(currentFilteredData)
+    //             }
+    //             return data;
+    //         }
+    
+    //  function confidenceFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].confidence)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = ''
+    //             if (graphToGenerateDataFor == 'confidenceLevel') {
+    //                 data = generateConfidenceData(currentFilteredData)
+    //             }
+    //             return data;
+    //         }
+    
+    //  function purposeOfVisitFilter(values, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].purposeOfVisit)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = generatePurposeOfVisitsData(currentFilteredData)
+    //             return data;
+    //         }
+    
+    //  function calculateNumberHoursForEachEntry() {
+    //             for (let i = 0; i < inPersonTrackerData.length; i++) {
+    //                 let tempHoursList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    //                 let timeOut = Number(inPersonTrackerData[i].timeOut.split(':')[0] - 8);
+    //                 if (inPersonTrackerData[i].timeOut.split(':')[1] >= 30) { //
+    //                     timeOut = timeOut + 0.5
+    //                 }
+    //                 let timeIn = Number(inPersonTrackerData[i].timeIn.split(':')[0]) - 8;
+    //                 if (inPersonTrackerData[i].timeIn.split(':')[1] > 30) {
+    //                     timeIn = timeIn + 0.5
+    //                 }
+    //                 let duration = timeOut - timeIn;
+    //                 for (let hour = timeIn; hour <= timeOut; hour = hour + 0.5) {
+    //                     tempHoursList[hour * 2] = 1;
+    //                 }
+    //                 inPersonTrackerData[i].hoursInTutorCenter = tempHoursList;
+    //             }
+    //         }
+    
+    //  function courseFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 //console.log("in course testing the if logic",values.includes(currentData[i].course))
+    //                 //console.log("courses",currentData[i].course)
+    //                 if (values.includes(currentData[i].course)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = '';
+    //             if (graphToGenerateDataFor == 'topCourses') {
+    //                 data = generateTopCoursesData(currentFilteredData)
+    //             }
+    //             return data;
+    //         }
+    
+    //  function aNumberFilter(values, graphToGenerateDataFor, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes(currentData[i].aNumber)) {
+    //                     currentFilteredData.push(currentData[i])
+    //                 }
+    //             }
+    //             let data = '';
+    //             if (graphToGenerateDataFor == 'usageById') {
+    //                 data = generateUsageByIdData(currentFilteredData)
+    //             }
+    //             return data;
+    //         }
+    
+    //  function departmentFilter(values, currentData) {
+    //             for (let i = 0; i < currentData.length; i++) {
+    //                 if (values.includes('BE')) {
+    //                     if (currentData[i].major == "Biological") {
+    //                         currentFilteredData.push(currentData[i])
+    //                     }
+    //                 }
+    //                 if (values.includes('ECE')) {
+    //                     if (currentData[i].major == "Computer" || currentData[i].major == "Electrical") {
+    //                         currentFilteredData.push(currentData[i])
+    //                     }
+    //                 }
+    //                 if (values.includes('CEE')) {
+    //                     if (currentData[i].major == "Civil" || currentData[i].major == "Environmental") {
+    //                         currentFilteredData.push(currentData[i])
+    //                     }
+    //                 }
+    //                 if (values.includes('MAE')) {
+    //                     if (currentData[i].major == "Mechanical/Aerospace") {
+    //                         currentFilteredData.push(currentData[i])
+    //                     }
+    //                 }
+    //             }
+    //         }
+    
+    
+    
+        
+    //         function generateReportFilters(selectedGraphs, selectedCourses, selectedMajor, selectedDepartment,selectService, selectConfidence, selectANumbers, dateValues) {
+    //     setTimeout(function(){
+    //         currentSelectedLabels = [...allLabels]
+    //         let currentFilteredDataCopy = JSON.parse(JSON.stringify(inPersonTrackerData))
+    //         currentFilteredData = []
+    //         dateRangeFilter(dateValues, '', currentFilteredDataCopy)
+    //         document.querySelector('#generatePDFProgressBar').style.width='5%'
+    //         console.log('date range',currentFilteredData)  
+    //         setTimeout(function(){
+    //             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //             currentFilteredData = []
+    //             hourlyAnalysisDayOfTheWeekSelectFilter(allDays, '', currentFilteredDataCopy)
+    //             document.querySelector('#generatePDFProgressBar').style.width='10%' 
+    //             console.log('hourly anylisis',currentFilteredData)  
+    //             setTimeout(function(){
+    //                 currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                 currentFilteredData = []
+    //                 hourlySelectFilter(allLabels, '', currentFilteredDataCopy)
+    //                 document.querySelector('#generatePDFProgressBar').style.width='15%' 
+    //                 console.log('hourly select',currentFilteredData)    
+    //                 setTimeout(function(){
+    //                     currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                     currentFilteredData = []
+    //                     majorFilter(selectedMajor, '', currentFilteredDataCopy)
+    //                     document.querySelector('#generatePDFProgressBar').style.width='20%'
+    //                     console.log('major filter',currentFilteredData)    
+    //                     setTimeout(function(){
+    //                         currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                         currentFilteredData = []
+    //                         departmentFilter(selectedDepartment,currentFilteredDataCopy)
+    //                         document.querySelector('#generatePDFProgressBar').style.width='25%'
+    //                         console.log('department filter',currentFilteredData)    
+    //                         setTimeout(function(){
+    //                             console.log("current filtered data before copy",currentFilteredData)
+    //                             currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                             currentFilteredData = []
+    //                             console.log("courses to filter",selectedCourses)
+    //                             console.log("current filtered data before filter",currentFilteredDataCopy)
+    //                             courseFilter(selectedCourses, '', currentFilteredDataCopy)
+    //                             document.querySelector('#generatePDFProgressBar').style.width='30%'
+    //                             console.log('course filter',currentFilteredData)       
+    //                             setTimeout(function(){
+    //                                 currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                                 currentFilteredData = []
+    //                                 aNumberFilter(selectANumbers, '', currentFilteredDataCopy)
+    //                                 document.querySelector('#generatePDFProgressBar').style.width='35%'
+    //                                 console.log('aNumber',currentFilteredData)       
+    //                                 setTimeout(function(){
+    //                                     currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                                     currentFilteredData = []
+    //                                     confidenceFilter(selectConfidence, 'confidenceLevel', currentFilteredDataCopy)
+    //                                     document.querySelector('#generatePDFProgressBar').style.width='40%'
+    //                                     console.log('confidence filter',currentFilteredData)       
+    //                                     setTimeout(function(){
+    //                                         currentFilteredDataCopy = JSON.parse(JSON.stringify(currentFilteredData))
+    //                                         currentFilteredData = []
+    //                                         purposeOfVisitFilter(selectService, currentFilteredDataCopy)
+    //                                         document.querySelector('#generatePDFProgressBar').style.width='45%'  
+    //                                         console.log('pupose of visit',currentFilteredData)  
+    //                                         for(let i=0;i< currentFilteredData.length; i++){console.log(currentFilteredData[i].coursePrefix)
+    //                                             console.log(currentFilteredData[i].aNumber)
+    //                                         }            
+
+    //                                         setTimeout(function(){
+    //                                             if (selectedGraphs.includes('Hourly Analysis')) {
+    //                                                 let data = generateHourlyAnalysisData(currentFilteredData, currentSelectedLabels);
+    //                                                 let graphOptions = generateOptions('hourlyAnalysisChart')
+    //                                                 generateGraph(data, 'bar', 'pdfReportHourlyAnalysisChart', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Daily Analysis')) {
+    //                                                 let graphOptions = generateOptions('dailyAnalysisChart')
+    //                                                 let data = generateDailyAnalysisData(currentFilteredData, currentSelectedLabels);
+    //                                                 generateGraph(data, 'bar', 'pdfReportDailyAnalysisChart', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Usage')) {
+    //                                                 let graphOptions = generateOptions('usageChart')
+    //                                                 let data = generateUsageData(currentFilteredData, dateValues)
+    //                                                 generateGraph(data, 'line', 'pdfReportUsageChart', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Top Courses')) {
+    //                                                 let data = generateTopCoursesData(currentFilteredData)
+    //                                                 let graphOptions = generateOptions('topCourses')
+    //                                                 generateGraph(data, 'horizontalBar', 'pdfReportTopCourses', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Usage By Id')) {
+    //                                                 let data = generateUsageByIdData(currentFilteredData)
+    //                                                 let graphOptions = generateOptions('usageById')
+    //                                                 generateGraph(data, 'bar', 'pdfReportUsageById', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Session Length')) {
+    //                                                 let data = generateSessionLengthData(currentFilteredData)
+    //                                                 let graphOptions = generateOptions('sessionLength')
+    //                                                 generateGraph(data, 'bar', 'pdfReportSessionLengthId', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Confidence Level')) {
+    //                                                 let data = generateConfidenceData(currentFilteredData)
+    //                                                 let graphOptions = generateOptions('confidenceLevel')
+    //                                                 generateGraph(data, 'bar', 'pdfReportConfidenceLevel', graphOptions,true)
+    //                                             }
+    //                                             if (selectedGraphs.includes('Purpose of Visit')) {
+    //                                                 let graphOptions = generateOptions('purposeOfVisit')
+    //                                                 let data = generatePurposeOfVisitsData(currentFilteredData)
+    //                                                 generateGraph(data, 'bar', 'pdfReportPurposeOfVisit', graphOptions,true)
+    //                                             }
+    //                                             document.querySelector('#generatePDFProgressBar').style.width='50%'     
+    //                                         })
+    //                                     })
+    //                                 })
+    //                             })
+    //                         }) 
+    //                     })
+    //                 })
+    //             })
+    //         })
+    //     })       
+    // }
+    
+    
+    // function generatePDFReport(title, dateRange, selectedGraphs, departments, majors, courses, confidenceLevel,services) {
+    //     let reportTitle = title == '' ? 'Engineering Tutor Center Reports' : title;
+    //     const doc = new jsPDF({orientation:"portrait", unit:"mm", format:"a4"});
+    //     doc.text(105, 20, reportTitle, { align: "center"})
+    //     doc.setFontSize(9)
+    //     doc.text(105, 25, dateRange, {align: "center"})
+    //     doc.setFontSize(12)
+    //     doc.text(105, 35, "Filters", {align: "center"})
+    //     doc.setFontSize(9)
+    //     doc.text(40, 40, `Departments: ${convertArrayToStringForPDF(departments)[0]}`, {align: "left"})
+    //     doc.text(40, 45, `Student Majors: ${convertArrayToStringForPDF(majors)[0]}`, {align: "left"})
+    //     let verticlePageIncrement = 1
+    //     if(courses.length==getAllCourses().length){doc.text(40, 50, `Courses: All Courses Selected `, {align: "left"})}
+    //     else{
+    //         let allCourseCountPerPrefix = getCoursesPerPrefixCount()
+    //         let currentCourseCountPerPrefix = getCurrentCoursePerPrefixCount(courses)
+    //         let keys = Object.keys(currentCourseCountPerPrefix)
+    //         let filledPrefixes = [];
+    //         for(let i = 0;i<keys.length;i++){
+    //             if(currentCourseCountPerPrefix[keys[i]] == allCourseCountPerPrefix[keys[i]]){
+    //                 filledPrefixes.push(keys[i]);
+    //                 if(i==0){doc.text(40, 50 + verticlePageIncrement, `All Courses with prefix: ${keys[i]} are Selected`, {align: "left"}) }
+    //                 else{doc.text(40, 50 + verticlePageIncrement, `All Courses with prefix: ${keys[i]} are Selected`, {align: "left"}) }
+    //                 verticlePageIncrement = verticlePageIncrement + 5
+    //             }
+    //         }
+    //     //verticlePageIncrement = 5
+    //     let coursesLines = convertArrayToStringForPDF(filterAllCoursesFromAllSelectedPrefixes(courses,filledPrefixes))
+    //     let line = 0
+    //     while (line < coursesLines.length) {
+    //         if(!filledPrefixes.includes(coursesLines[line].split(' ')[0])){
+    //         if (line == 0) {
+    //             doc.text(40, 50+ verticlePageIncrement, `Courses: ${coursesLines[0]} `, {align: "left"})
+    //         }
+    //         if (line !== coursesLines.length && line!==0) {
+    //             doc.text(40, 55 + verticlePageIncrement, `${coursesLines[line]}`, {align: "left"})
+    //             verticlePageIncrement = verticlePageIncrement + 5
+    //         }
+    //     }
+    //     if(line ==38){
+    //         break;
+    //     }
+    //         line++;
+    //     }
+    // }
+
+
+    //     console.log("verticlePageIncrement ",verticlePageIncrement)
+    //     doc.text(40, 65 + verticlePageIncrement,`Confidence Levels: ${convertArrayToStringForPDF(confidenceLevel)[0]}`, {align: "left"})
+    //     let servicesOfferedLines = convertArrayToStringForPDF(services)
+    //     let serviceOfferedLine = 0;
+    //     while(serviceOfferedLine<servicesOfferedLines.length){
+    //         if(serviceOfferedLine==0){
+    //             doc.text(40, 60 + verticlePageIncrement, `Tutor Center Services: ${servicesOfferedLines[serviceOfferedLine]}`, {align: "left"})
+    //         }
+    //         if(serviceOfferedLine !== servicesOfferedLines.length && serviceOfferedLine!==0){
+    //             verticlePageIncrement = verticlePageIncrement+5
+    //             doc.text(40,65+verticlePageIncrement,`${servicesOfferedLines[serviceOfferedLine]}`,{align:"left"})
+    //         }
+    //         serviceOfferedLine++
+    //     }
+    //     doc.setFontSize(12)
+    //     let progress = 50
+    //     let i=0;
+    //     addImageToPDF()
+    //     function addImageToPDF(){
+    //         let progressIncrement = 80/selectedGraphs.length
+    //         progress = progress+progressIncrement
+    //         doc.addPage("a4", "p")
+    //         doc.text(105, 10, `${selectedGraphs[i]}`, {
+    //             align: "center"
+    //         })
+    //         let canvas = document.querySelector('#pdfReportHourlyAnalysisChart')
+    //         if (selectedGraphs[i] == 'Hourly Analysis') {
+    //             canvas = document.querySelector('#pdfReportHourlyAnalysisChart')
+    //         }
+    //         if (selectedGraphs[i] == 'Daily Analysis') {
+    //             canvas = document.querySelector('#pdfReportDailyAnalysisChart')
+    //         }
+    //         if (selectedGraphs[i] == 'Usage') {
+    //             canvas = document.querySelector('#pdfReportUsageChart')
+    //         }
+    //         if (selectedGraphs[i] == 'Top Courses') {
+    //             canvas = document.querySelector('#pdfReportTopCourses')
+    //         }
+    //         if (selectedGraphs[i] == 'Usage By Id') {
+    //             canvas = document.querySelector('#pdfReportUsageById')
+    //         }
+    //         if (selectedGraphs[i] == 'Session Length') {
+    //             canvas = document.querySelector('#pdfReportSessionLengthId')
+    //         }
+    //         if (selectedGraphs[i] == 'Confidence Level') {
+    //             canvas = document.querySelector('#pdfReportConfidenceLevel')
+    //         }
+    //         if (selectedGraphs[i] == 'Purpose of Visit') {
+    //             canvas = document.querySelector('#pdfReportPurposeOfVisit')
+    //         }
+    //         let context = canvas.getContext("2d")
+    //         let imgData = canvas.toDataURL("image/png", 1.0);
+    //         doc.addImage(imgData, 'PNG', 15, 40, 180, 180)
+    //         document.querySelector('#generatePDFProgressBar').style.width=progress+'%';
+    //         if((i+1)==selectedGraphs.length){
+    //             doc.save(`${title}.pdf`)
+    //             document.querySelector('#generatePDFProgressBar').style.width='100%'
+    //             document.querySelector('#pdfGenerateReportCanvasContainer').classList.add('d-none')
+    //             document.querySelector('#progressContainer').classList.add('d-none')
+    //             document.querySelector('#pdfSuccessContainer').classList.remove('d-none')
+    //         }
+    //         if(i<selectedGraphs.length){
+    //             setTimeout(function(){
+    //                 i++;
+    //                 addImageToPDF()
+    //             },100)
+    //         }
+    //     }
+    
+    // }
+
+    // function getCurrentCoursePerPrefixCount(courses){
+    //     let temPrefixes = [];
+    //     let prefixesCount = {};
+	// for (let i = 0; i < courses.length; i++) {
+    //     let prefix = courses[i].split(" ")[0];
+    //     if(temPrefixes.includes(prefix)) {
+    //         let key = prefix
+    //         prefixesCount[key] = prefixesCount[key] +1
+    //     }else{
+    //         temPrefixes.push(prefix)
+    //         let key = prefix
+    //         temPrefixes[prefix]=1
+    //         prefixesCount[key] =1
+    //         }
+    // }    
+    // return prefixesCount;
+    // }
+    // function filterAllCoursesFromAllSelectedPrefixes(courses, filledPrefixes){
+    //     let filteredCourses = [];
+    //     for(let i=0;i<courses.length;i++){
+    //         if(!filledPrefixes.includes(courses[i].coursePrefix)){
+    //             filteredCourses.push(courses[i])
+    //         }
+    //     }
+    //     return filteredCourses;
+    // }
+
+
+
+    // function downloadDataAsCSV(){
+    //     console.log("in the donwlaod data as csv",unAlteredInPersonTrackerdata)
+    //     var keys = Object.keys(unAlteredInPersonTrackerdata[0]);
+    //     console.log("keys in downloadDataAsCSV ",keys)
+    //     let resultString = '';
+    //     for(let key =0;key<keys.length;key++){
+    //         if(key!=(keys.length-1)){
+    //         resultString = resultString +keys[key]+','
+    //         console.log("key",keys[key])
+    //         console.log("Result string",resultString)
+    //         }
+    //         else{
+    //             resultString = resultString + keys[key]+'\n'
+    //         }
+    //     }
+    //     for(let i=0;i<unAlteredInPersonTrackerdata.length; i++){
+    //         for(let key =0;key <keys.length;key++){
+    //             let item = unAlteredInPersonTrackerdata[i]
+    //             if(key!=(keys.length-1)){
+    //                 if(keys[key]=="date"){
+    //                     resultString = resultString +'"'+ item[keys[key]]+'"'+ ','
+    //                 } 
+    //                 else {
+    //             resultString = resultString + item[keys[key]]+ ','
+    //             }
+    //             }
+    //             else{resultString = resultString + item[keys[key]]+ '\n'}
+    //         }
+    //     }
+    //     let csvData = new Blob([resultString], { type: 'text/csv' });  
+    //     let csvUrl = URL.createObjectURL(csvData);
+    //     let hiddenElement = document.createElement('a');
+    //         hiddenElement.href = csvUrl;
+    //         hiddenElement.target = '_blank';
+    //         hiddenElement.download = "Tutoring-Center-In-Person-Tracker" + '.csv';
+    //         hiddenElement.click();
+    // }
+    
+    
+        </script>
+
+<script src="scripts/auth.js"></script>
+
+</body>
+
+</html>

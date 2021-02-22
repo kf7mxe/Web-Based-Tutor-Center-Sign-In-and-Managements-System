@@ -1,0 +1,304 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in to Tutor center</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+    integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous">
+  </script>
+      
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+    <script src="scripts/firebaseInitial.js"></script>
+    <script src="scripts/SignIn.js" type="module"></script>
+
+
+</head>
+
+<body>
+<top-banner></top-banner>
+<top-nav></top-nav>
+  <div class="container">
+    <div class="row mb-2 mt-2">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <form id="signInForm">
+              <h2>Sign In</h2>
+
+              <div class="form-group">
+                <label class="col-form-label font-weight-bold" for="aNumberInput">Enter Your ID Number</label>
+                <input type="text" class="form-control" pattern="A[0-9]{8}" id="aNumberInput" aria-describedby="" required placeholder="Enter ID-Number">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+              <div class="form-group">
+                <label class="col-form-label font-weight-bold" for="selectMajorInput">Major</label>
+                <select id="selectMajorInput" class="custom-select" required="required" >
+                  <option selected value="">Select Major</option>
+                  <option value="Biological">Biological</option>
+                  <option value="Environmental">Environmental</option>
+                  <option value="Computer">Computer</option>
+                  <option value="Electrical">Electrical</option>
+                  <option value="Mechanical/Aerospace">Mechanical/Aerospace</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label font-weight-bold" for="rankInput">Class Rank</label>
+                <select id="rankInput" class="custom-select" required="required" >
+                  <option selected value="">Select Class Rank</option>
+                  <option value="Freshman">Freshman</option>
+                  <option value="Sophomore">Sophomore</option>
+                  <option value="Junior">Junior</option>
+                  <option value="Senior">Senior</option>
+                  <option value="Graduate">Graduate</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="col-form-label font-weight-bold" for="coursePrefixSelect">Course Prefix</label>
+                <select id="coursePrefixSelect" class="custom-select" required>
+                  <option value="" selected>Select Course Prefix</option>
+                </select>
+              </div>
+
+
+              <div id="" class="form-group">
+                <label class="col-form-label font-weight-bold" for="selectCourse">Course</label>
+                <select id="selectCourse" class="custom-select" required>
+                  <option value="" selected>Select Course</option>
+                </select>
+                <input type="text" class="form-control mt-2 d-none" id="selectCourseOtherTextInput" aria-describedby=""
+                placeholder="MAE 0000: Description" pattern="[A-Z]{3} [0-9]{4}:[a-z]+" required="required">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label font-weight-bold" for="exampleInputPassword1">Purpose of Visit</label>
+
+                  <select id="purposeOfVisitInput" class="custom-select" required>
+                    <option selected value="">Select Purpose of Visit</option>
+                    <option value="Homework Help">Homework Help</option>
+                    <option value="Exam Preparation">Exam Preparation</option>
+                    <option value="Group Study Session">Group Study Session</option>
+                    <option value="Presentation Practice">Presentation Practice</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <input type="text" class="form-control mt-2 d-none" required="required" id="purposeOfVisitOther" aria-describedby=""
+                  placeholder="Other purpose of visit">
+
+              </div>
+
+              <div class="form-group">
+                <label class="col-form-label font-weight-bold" for="exampleInputPassword1">Please Rate how confident you
+                  feel with the most recent material you learned in this course:</label>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input id="rateConfidence" type="range" min="1" max="5" list="tickmarks" class="form-control-range"required>
+                    <datalist id="tickmarks"  >
+                      <option value="1" label="1">1</option>
+                      <option value="2" label="2">2</option>
+                      <option value="3" label="3">3</option>
+                      <option value="4" label="4">4</option>
+                    </datalist>
+                  </div>
+                  <div class="col-sm-6">
+                    <label id="selectedConfidenceLabel">Neutral</label>
+                  </div>
+                </div>
+
+              </div>
+              <h3>Remember:</h3>
+              <ol>
+                <strong>
+                  <li>Read the textbook</li>
+                </strong>
+                <strong>
+                  <li>Attempt the problem first</li>
+                </strong>
+                <strong>
+                  <li>Prepare your question before coming to the tutor center</li>
+                </strong>
+              </ol>
+              <div class="form-group">
+              <input type="submit" value="Sign In" class="btn btn-primary"></input>
+              </div>
+            </form>
+            <div id="signInSuccessAlert" class="alert alert-success d-none">
+              <h2>You are now signed in</h2>
+            </div>
+            <div id="singInErrorAlert" class="alert alert-danger d-none">
+              <h2>Error</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>Sign Out</h2>
+            <p>Find your ID number and sign out</p>
+            <div id="signedInUsers">
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<custom-footer></custom-footer>
+
+
+<login-modal></login-modal>
+<create-account-modal></create-account-modal>
+<survey-modal></survey-modal>
+<script src="scripts/topBannerNavFooterComponents.js"></script>
+<script src="scripts/components.js"></script>
+
+
+
+  <script>
+        // Your web app's Firebase configuration
+        let courses=[];
+        //loadCourses();
+        // function loadCourses() {
+        //     let prefix = "";
+        //     let prefixArray=[];
+        //     courses=[];
+        //     // db.collection("courses").orderBy("coursePrefix").onSnapshot(querySnapshot => {
+        //     //     querySnapshot.forEach((doc) => {
+        //     //         let data = doc.data();
+        //     //         if(prefixArray.indexOf(data.coursePrefix)===-1){
+        //     //           prefixArray.push(data.coursePrefix)
+        //     //           let prefixItem = `<option value="${data.coursePrefix}">${data.coursePrefix}</option>`;
+        //     //           prefix = prefix + prefixItem;
+        //     //           let tempPrefix = data.coursePrefix;
+        //     //           courses[tempPrefix] = [`<option value="${data.course}">${data.course}</option>`]
+        //     //         }
+        //     //         else{
+        //     //           courses[data.coursePrefix].push(`<option value="${data.course}">${data.course}</option>`)
+        //     //         }
+        //     //         document.getElementById('coursePrefixSelect').innerHTML = prefix+'<option value="Other">Other</option>';
+        //     //         fillCourseFromPrefix(document.querySelector('#coursePrefixSelect').value)
+        //     //     });
+
+        //     // });
+        // }
+
+        
+
+        // db.collection("inPersonTracker").where("signedOut","==",false).onSnapshot(function(querySnapshot) {
+        //   let signInCardDiv = '';
+        //   querySnapshot.forEach(function(doc){
+        //     signInCardDiv = signInCardDiv + `<signed-in-user-card a-number="${doc.data().aNumber}" timeIn="${doc.data().timeIn}" id="${doc.id}"></signed-in-user-card>`
+        //   })
+        //   document.querySelector("#signedInUsers").innerHTML = signInCardDiv
+        // });
+        
+    //     document.querySelector('#signInForm').addEventListener('submit',function(event){
+    //       event.preventDefault();
+    //       let date = new Date();
+    //       let weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    //       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    //       // Add a new document in collection "cities"
+    //       db.collection("inPersonTracker").add({
+    //           aNumber: document.querySelector('#aNumberInput').value,
+    //           classRank: document.querySelector('#rankInput').value,
+    //           confidence: document.querySelector('#rateConfidence').value,
+    //           course:document.querySelector('#selectCourse').value==="Other"?document.querySelector('#selectCourseOtherTextInput').value:document.querySelector('#selectCourse').value,
+    //           courseNumber:document.querySelector('#selectCourse').value==="Other"?document.querySelector('#selectCourseOtherTextInput').value.split(' ')[1].split(':')[0]:document.querySelector('#selectCourse').value.split(' ')[1].split(':')[0],
+    //           coursePrefix:document.querySelector('#coursePrefixSelect').value,
+    //           date:`${months[date.getMonth()]} ${date.getDate()},${date.getFullYear()}`,
+    //           dayOfWeek:weekday[date.getDay()],
+    //           major:document.querySelector('#selectMajorInput').value,
+    //           purposeOfVisit:document.querySelector('#purposeOfVisitInput').value,
+    //           signedOut:false,
+    //           timeIn:date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+    //           timeOut:'',
+    //           totalMinutes:''
+    //       })
+    //       .then(function() {
+    //       console.log("Document successfully written!");
+
+    //       document.getElementById('signInSuccessAlert').classList.remove("d-none");
+    //       setTimeout(function(){
+    //         document.querySelector('#signInForm').reset();
+    //         document.getElementById('signInSuccessAlert').classList.add("d-none");
+    //       document.querySelector('#selectCourseOtherTextInput').classList.add("d-none");
+    //       document.querySelector("#selectCourseOtherTextInput").removeAttribute("required")
+    //       document.querySelector('#purposeOfVisitOther').classList.add("d-none");
+    //       document.querySelector("#purposeOfVisitOther").removeAttribute("required")
+    // }, 3000)
+         
+    //       })
+    //       .catch(function(error) {
+    //       console.error("Error writing document: ", error);
+    //       document.getElementById('signInSuccessAlert').classList.remove("d-none")
+    // setTimeout(function(){
+    //   document.getElementById('signInSuccessAlert').classList.add("d-none");
+    //   document.getElementById('signInSuccessAlert').innerHTML = `<h2>Error  ${error}</h2>`;
+    // }, 6000)
+    //       });
+          
+    //     })
+
+        // document.querySelector('#coursePrefixSelect').addEventListener('change',function(){
+        //   fillCourseFromPrefix(this.value);});
+
+        // function fillCourseFromPrefix(value){
+        //   if(document.querySelector('#coursePrefixSelect').value==="Other"){
+        //     document.querySelector('#selectCourseOtherTextInput').classList.remove("d-none");
+        //     document.querySelector("#selectCourseOtherTextInput").setAttribute("required","required")
+        //     document.querySelector('#selectCourse').classList.add("d-none");
+        //   }else{
+        //   let course = '';
+        //   let tempCourses='';
+        //   for(var i =0;i<=courses[value].length;i++){
+        //     course = courses[value][i]
+        //     tempCourses = tempCourses + course;
+        //   }
+        //   document.querySelector('#selectCourse').innerHTML =tempCourses +'<option value="Other">Other</option>';
+        //   document.querySelector('#selectCourse').classList.remove("d-none");
+        //   document.querySelector('#selectCourseOtherTextInput').classList.add("d-none");
+        //   document.querySelector("#selectCourseOtherTextInput").removeAttribute("required")
+        // }
+        // }
+
+        // document.querySelector('#selectCourse').addEventListener('change',function(){
+        //   if(document.querySelector('#selectCourse').value==="Other"){
+        //     document.querySelector('#selectCourseOtherTextInput').classList.remove("d-none");
+        //     document.querySelector("#selectCourseOtherTextInput").setAttribute("required","required")
+        //   }
+        //   else{
+        //     document.querySelector('#selectCourseOtherTextInput').classList.add("d-none");
+        //     document.querySelector("#selectCourseOtherTextInput").removeAttribute("required")
+        //   }
+          
+        // })
+        // document.querySelector('#purposeOfVisitInput').addEventListener('change',function(){
+        //   if(document.querySelector('#purposeOfVisitInput').value==="Other"){
+        //     document.querySelector('#purposeOfVisitOther').classList.remove("d-none");
+        //     document.querySelector("#purposeOfVisitOther").setAttribute("required","required")
+
+        //   }
+        //   else{
+        //     document.querySelector('#purposeOfVisitOther').classList.add("d-none");
+        //     document.querySelector("#purposeOfVisitOther").removeAttribute("required")
+        //   }
+        // })
+
+        // document.querySelector('#rateConfidence').addEventListener('change',function(){
+        //   let labels = ['Not confidence at all','Somewhat unconfident','Neutral','Somewhat confident','Very Confident']
+        //   document.querySelector('#selectedConfidenceLabel').innerHTML =`${labels[this.value-1]}`
+        // })
+    </script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="scripts/auth.js"></script>
+
+</html>

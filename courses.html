@@ -1,0 +1,75 @@
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Language" content="en">
+<meta name="google" content="notranslate">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Center</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous">
+    </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-functions.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="scripts/firebaseInitial.js"></script>
+    <script src="/scripts/Courses.js" type="module"></script>
+</head>
+
+<body>
+    <top-banner></top-banner>
+    <top-nav></top-nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+               <side-nav currentPage="courses"></side-nav>
+            </div>
+            <div class="col-sm-9">
+                <button class="btn btn-primary btn-block mt-2 mb-2" data-toggle="modal"
+                    data-target="#addCourseModal">Add Course</button>
+                <input class="form-control mb-2" id="searchBar" type="text" placeholder="Search">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Prefix</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Course</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="courses-table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <custom-footer></custom-footer>
+<login-modal></login-modal>
+<create-account-modal></create-account-modal>
+<add-admin></add-admin>
+<add-course-modal></add-course-modal>
+<edit-course-modal id="editCourseComponent" collectionToDelete="courses" firebaseid=" "></edit-course-modal>
+<confirm-delete-modal id="confirmDeleteComponent" collectionToDelete="courses" firebaseid=" "></confirm-delete-modal>
+<script src="scripts/topBannerNavFooterComponents.js"></script>
+<script src="scripts/components.js"></script>
+
+
+</body>
+
+<!-- <script src="scripts/auth.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
+
+</html>

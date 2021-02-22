@@ -2,8 +2,8 @@
 System for keeping record and generating reports for a Tutoring Center Using Firebase Authentication and Firebase Firestore. 
 
 ## Allow Students to Sign In 
-<!---
-[sign-in-page-screenshot](/other/sign-in-page-screenshot.jpg)--->
+
+[sign-in-page-screenshot](/other/sign-in-page-screenshot.jpg)-
 
 ## Manage Courses and Personell
 

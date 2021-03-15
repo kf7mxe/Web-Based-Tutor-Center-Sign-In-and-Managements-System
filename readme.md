@@ -7,13 +7,13 @@ System for keeping record and generating reports for a Tutoring Center Using Fir
 
 ## Manage Courses and Personell
 
-[courses-page](https://raw.githubusercontent.com/kf7mxe/Web-Based-Tutor-Center-Sign-In-and-Managements-System/master/other/courses-page.jpg)-
-[personnel-example-page](https://raw.githubusercontent.com/kf7mxe/Web-Based-Tutor-Center-Sign-In-and-Managements-System/master/other/personnel-example-page.jpg)-
+![courses-page](https://raw.githubusercontent.com/kf7mxe/Web-Based-Tutor-Center-Sign-In-and-Managements-System/master/other/courses-page.jpg)-
+![personnel-example-page](https://raw.githubusercontent.com/kf7mxe/Web-Based-Tutor-Center-Sign-In-and-Managements-System/master/other/personnel-example-page.jpg)-
 
 ## Change Scheduler
 
 ## Generate graphs and PDFs of Dataset
-[reports-page](https://raw.githubusercontent.com/kf7mxe/Web-Based-Tutor-Center-Sign-In-and-Managements-System/master/other/reports-page.jpg)-
+![reports-page](https://raw.githubusercontent.com/kf7mxe/Web-Based-Tutor-Center-Sign-In-and-Managements-System/master/other/reports-page.jpg)-
 
 ## Set Up
 

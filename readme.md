@@ -7,9 +7,13 @@ System for keeping record and generating reports for a Tutoring Center Using Fir
 
 ## Manage Courses and Personell
 
+[courses-page](other/courses-page.jpg?raw=true)-
+[personnel-example-page](other/personnel-example-page.jpg?raw=true)-
+
 ## Change Scheduler
 
 ## Generate graphs and PDFs of Dataset
+[reports-page](other/reports-page.jpg?raw=true)-
 
 ## Set Up
 
